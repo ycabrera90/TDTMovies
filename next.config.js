@@ -2,6 +2,15 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     // formats: ['image/avif', 'image/webp'],
     remotePatterns: [
