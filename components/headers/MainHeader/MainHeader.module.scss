@@ -1,0 +1,17 @@
+@import "styles/colors.module.scss";
+@import "styles/shadows.module.scss";
+@import "styles/breakpoints.module.scss";
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    background: $dropdown_menu-bg;
+    padding: 1rem 2.9vw 1rem 5.9vw;
+    box-shadow: $box-shadow_base;
+    border-radius: 0px 0px 8px 8px;
+    gap: 8px;
+
+   @media (max-width: $sm-screens) {
+        padding: 1rem 1.5rem;
+    }
+}
