@@ -1,3 +1,5 @@
+@import "styles/colors.module.scss";
+
 html,
 body {
   padding: 0;
@@ -13,12 +15,43 @@ a {
 
 * {
   box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar:vertical {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-button:increment {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $btn_primary-bg;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.448);
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;

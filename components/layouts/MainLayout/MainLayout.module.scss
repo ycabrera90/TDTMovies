@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #F5F5F5;
+
+    main{
+        height: 100%;
+        overflow: overlay;
+        padding: 1rem 1.5rem;
+    }
+}
