@@ -6,6 +6,7 @@ const urlDevPaths = [
   "/dev/buttons/favorites_button",
   "/dev/buttons/search_button",
   "/dev/inputs/search_input",
+  "/dev/icons/tdt_icon",
 ];
 
 export default function Home() {
