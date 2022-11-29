@@ -44,6 +44,7 @@ const MovieCard: FC<IMovieCard> = ({ className, title, overview, imageUrl, voteA
         fill                                            
         sizes="50vw"
         style={{ objectFit: "cover" }}
+        priority
     />
     <AddRemButton className={styles['add-rem-button']} type="add"/>
     </article>

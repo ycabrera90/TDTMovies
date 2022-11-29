@@ -1,18 +1,48 @@
 // v1.0.4
+import { BaseSyntheticEvent, FC, ReactNode, createContext, useState } from "react";
 import MainHeader from "@/components/headers/MainHeader/MainHeader";
-import { FC } from "react";
 import styles from "./MainLayout.module.scss";
 
 export interface IMainLayout {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
+  scroll?: { trigger: number };
 }
 
-const MainLayout: FC<IMainLayout> = ({ className, children }) => {
+export const MainLayoutContext = createContext({ scrollEvent: 0});
+
+let scrollEvents = true;
+
+const MainLayout: FC<IMainLayout> = ({ className, children, scroll }) => {
+  const [ scrollEvent, setScrollEvent ] = useState(1);
+  
+  const scrollEventHandler = (event:BaseSyntheticEvent):void => {
+    if (!scroll) {
+      return;
+    }
+    const domElement = event.target;
+    let scrolledContainer = domElement.scrollTop;
+    let containerHeight = domElement.getBoundingClientRect().height;
+    let itemsHeght = domElement.childNodes[0].getBoundingClientRect().height;
+    let maxScrollItems = itemsHeght - containerHeight;
+    let percentScrolledContainer = (scrolledContainer / maxScrollItems) * 100;
+    if (percentScrolledContainer > scroll.trigger) {
+      if (scrollEvents) {
+        setScrollEvent((state) => state + 1);
+        scrollEvents = false;
+        setTimeout(() => {
+          scrollEvents = true;
+        }, 1000);
+      }
+    }
+  };
+
   return (
     <div className={[styles.container, className ? className : ''].join(' ')}>
-      <MainHeader/>
-      <main>{children}</main>
+      <MainHeader />
+      <MainLayoutContext.Provider value={{ scrollEvent: scrollEvent }}>
+        <main onScroll={scrollEventHandler}>{children}</main>
+      </MainLayoutContext.Provider>
     </div>
   );
 };

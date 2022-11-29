@@ -2,6 +2,7 @@
 @import "styles/colors.module.scss";
 
 .container {
+    position: relative;     // only for Image component of next/image
     width: 15.25rem;
     height: 19.19rem;
     
