@@ -1,0 +1,83 @@
+@import "styles/colors.module.scss";
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: 2.29px solid #ffffff;
+    border-radius: 20px;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+    .piece1,
+    .piece2 {
+        width: 2.29px;
+        height: 2.29px;
+        background: #ffffff;
+        border-radius: 0.5px;
+    }
+
+    .piece2 {
+        position: absolute;
+    }
+
+    .piece1.add {
+        animation: piece1add 250ms 0.01s ease-out 1 both;
+    }
+
+    .piece2.add {
+        animation: piece2add 250ms 0.01s ease-out 1 both;
+    }
+    .piece1.remove {
+        width: 13.71px;
+        animation: piece1remove 250ms 0.01s ease-out 1 both;
+
+    }
+    .piece2.remove {
+        height: 13.71px;
+        animation: piece2remove 250ms 0.01s ease-out 1 both;
+    }
+}
+
+@keyframes piece1add {
+    50% {
+        width: 0px;
+        height: 0px;
+    }
+    100% {
+        width: 13.71px;
+    }
+}
+
+@keyframes piece2add {
+    50% {
+        width: 0px;
+        height: 0px;
+    }
+    
+    100% {
+        height: 13.71px;
+    }
+}
+
+@keyframes piece1remove {
+    50% {
+        width: 0px;
+        height: 0px;
+    }
+    100% {
+        width: 13.71px;
+    }
+}
+
+@keyframes piece2remove {
+    50% {
+        width: 0px;
+        height: 0px;
+    }
+    100% {
+        height: 0px;
+    }
+}

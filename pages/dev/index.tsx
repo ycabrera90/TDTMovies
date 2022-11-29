@@ -3,8 +3,11 @@ import Link from "next/link";
 // put in this list the links to the components
 const urlDevPaths = [
   "/dev/template/basetemplate",
+  
   "/dev/buttons/favorites_button",
   "/dev/buttons/search_button",
+  "/dev/buttons/add_rem_button",
+
   "/dev/inputs/search_input",
   "/dev/icons/tdt_icon",
   "/dev/headers/main_header",
