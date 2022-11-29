@@ -4,6 +4,7 @@ import Link from "next/link";
 const urlDevPaths = [
   "/dev/template/basetemplate",
   "/dev/buttons/favorites_button",
+  "/dev/buttons/search_button",
 ];
 
 export default function Home() {
