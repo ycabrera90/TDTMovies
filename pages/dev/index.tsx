@@ -14,6 +14,8 @@ const urlDevPaths = [
 
   "/dev/layouts/main_layout",
 
+  "/dev/cards/movie_card",
+
 ];
 
 export default function Home() {
