@@ -3,6 +3,7 @@ import Link from "next/link";
 // put in this list the links to the components
 const urlDevPaths = [
   "/dev/template/basetemplate",
+  "/dev/buttons/favorites_button",
 ];
 
 export default function Home() {
