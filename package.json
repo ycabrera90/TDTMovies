@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "engines": {
+    "node": ">=16.14.2",
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn",
     "prepare": "husky install"
   },
   "dependencies": {
