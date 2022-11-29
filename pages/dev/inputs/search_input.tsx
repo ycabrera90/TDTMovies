@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <main style={{ background: backgroundColor, height: "100vh", padding: "1rem"}}>
-      <SearchInput sampleTextProp="this is only a template" />
+      <SearchInput />
     </main>
   );
 }

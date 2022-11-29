@@ -3,7 +3,7 @@ import { FC } from "react";
 import SearchForm from "@/components/forms/SearchForm/SearchForm";
 import FavoritesButton from "@/components/buttons/FavoritesButton/FavoritesButton";
 import useDOM from "@/hooks/useDOM";
-import breakPoints from '@/styles/breakPoints.module.scss';
+import breakPoints from '@/styles/breakpoints.module.scss';
 import styles from "./MainHeader.module.scss";
 import TDTIcon from "@/components/icons/TDTIcon/TDTIcon";
 

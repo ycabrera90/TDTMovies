@@ -1,6 +1,6 @@
 // v1.0.4
 import { FC, MouseEventHandler } from "react";
-import TDTLogo from "@/assets/images/TDTLogo.svg";
+import TDTLogo from "@/public/tdtLogo.svg";
 import styles from "./TDTIcon.module.scss";
 
 export interface ITDTIcon {

@@ -1,5 +1,5 @@
 import { FC, MouseEventHandler } from "react";
-import SearchSVG from "@/assets/images/search.svg";
+import SearchSVG from "@/public/search.svg";
 import styles from "./SearchButton.module.scss";
 
 export interface ISearchButton {

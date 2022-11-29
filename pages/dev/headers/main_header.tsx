@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <main style={{ background: backgroundColor, height: "100vh"}}>
-      <MainHeader sampleTextProp="this is only a template" />
+      <MainHeader />
     </main>
   );
 }
