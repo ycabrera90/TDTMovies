@@ -1,75 +1,33 @@
 import { ReactElement } from 'react';
+import movieDbService from '@/services/movieDb.service';
 import MainLayout from '@/components/layouts/MainLayout/MainLayout';
 import MoviesGrid from '@/components/layouts/MoviesGrid/MoviesGrid';
-import { NextPageWithLayout } from '../_app';
+import { NextPageWithLayout } from '@/pages/_app';
+import { IMoviesAPP } from '@/models/movies.type';
 
 export interface IHomeScreen {}
 
-const popularMovies = [
-  {
-    title: "Black Adamm mmmm mmmm mmmmm mmmmm mmmmmm mmmmmmm mmm mmmmmmmmmmm",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitadosssssssssssssssssssssssss...",
-    voteAverage: 9.3,
-  },
-  {
-    title: "Black Adam",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitados...",
-    voteAverage: 9.3,
-  },
-  {
-    title: "Black Adam",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitados...",
-    voteAverage: 9.3,
-  },
-  {
-    title: "Black Adam",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitados...",
-    voteAverage: 9.3,
-  },
-  {
-    title: "Black Adam",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitados...",
-    voteAverage: 9.3,
-  },
-  {
-    title: "Black Adam",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitados...",
-    voteAverage: 9.3,
-  },
-  {
-    title: "Black Adam",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitados...",
-    voteAverage: 9.3,
-  },
-  {
-    title: "Black Adam",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitados...",
-    voteAverage: 9.3,
-  },
-  {
-    title: "Black Adam",
-    posterImage: "https://image.tmdb.org/t/p/w400/moDLTCdLx38kMhN53KOTw0LdWMh.jpg",
-    overview: "Paul Baumer y sus amigos Albert y Muller, incitados incitados incitados...",
-    voteAverage: 9.3,
-  },
-];
+export interface IHomeScreen {
+  popularMovies: IMoviesAPP;
+}
 
-const HomePage: NextPageWithLayout<IHomeScreen> = () => {
+const HomePage: NextPageWithLayout<IHomeScreen> = ({popularMovies}) => {
   return <div>
-    <MoviesGrid movies={popularMovies}/>
+    <MoviesGrid movies={popularMovies.movies}/>
   </div>;
 };
 
 HomePage.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout>{page}</MainLayout>;
 };
+
+export async function getStaticProps() {
+  const popularMovies = await movieDbService.getPopularMovies(1);
+  return {
+    props: {
+      popularMovies,
+    },
+  };
+}
 
 export default HomePage;
