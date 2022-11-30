@@ -16,6 +16,9 @@ const urlDevPaths = [
   "/dev/layouts/movies_grip",
 
   "/dev/cards/movie_card",
+
+  "/dev/messages/movie_not_found",
+
 ];
 
 export default function Home() {

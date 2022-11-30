@@ -5,6 +5,7 @@ import MainLayout, { MainLayoutContext } from '@/components/layouts/MainLayout/M
 import MoviesGrid from '@/components/layouts/MoviesGrid/MoviesGrid';
 import { IMoviesAPP, moviesEmpty } from '@/models/movies.type';
 import { useRouter } from 'next/router';
+import MovieNotFound from '@/components/messages/MovieNotFound';
 
 export interface ISearchPage {}
 
@@ -14,7 +15,7 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   const mainLayoutCtx = useContext(MainLayoutContext);
   const [requestedMovies, setRequestedMovies] = useState<IMoviesAPP>(moviesEmpty);
 
-  // console.log(encodeURIComponent('black adam'));
+  console.log(requestedMovies)
 
   const searchMovies = async () => {
     if(query){
@@ -53,7 +54,10 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   }, [mainLayoutCtx.scrollEvent]);
 
   return (
-    <>{requestedMovies && <MoviesGrid movies={requestedMovies.movies} />}</>
+    <>
+      {requestedMovies.totalPages === 0 && <MovieNotFound />}
+      {requestedMovies.totalPages !==0 && <MoviesGrid movies={requestedMovies.movies} />}
+    </>
   );
 };
 
