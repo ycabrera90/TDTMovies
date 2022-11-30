@@ -6,12 +6,14 @@ import useDOM from "@/hooks/useDOM";
 import breakPoints from '@/styles/breakpoints.module.scss';
 import styles from "./MainHeader.module.scss";
 import TDTIcon from "@/components/icons/TDTIcon/TDTIcon";
+import { useRouter } from "next/router";
 
 export interface IMainHeader {
   className?: string;
 }
 
 const MainHeader: FC<IMainHeader> = ({ className }) => {
+  const router = useRouter();
   const { screen } = useDOM("rem");
 
   const largeHeader = screen.size.width > +breakPoints.smSreens;
@@ -20,7 +22,7 @@ const MainHeader: FC<IMainHeader> = ({ className }) => {
     <header
       className={[styles.container, className ? className : ""].join(" ")}
     >
-      <TDTIcon/>
+      <TDTIcon onClick={() => router.push('/home')}/>
       {largeHeader && (
         <>
           <SearchForm />

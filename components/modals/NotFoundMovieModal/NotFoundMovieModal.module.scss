@@ -7,5 +7,10 @@
     color: #38a1ff;
     font-family: $font1;
     text-shadow: 1px 1px 2px #0000002e;
-    opacity: 0.9;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    &.entered {
+        opacity: 0.9;
+    }
 }

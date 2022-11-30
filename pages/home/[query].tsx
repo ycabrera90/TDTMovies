@@ -1,11 +1,11 @@
+import { useRouter } from 'next/router';
 import { ReactElement, useState, useContext, useEffect } from 'react';
 import { NextPageWithLayout } from '@/pages/_app';
-import movieDbService from '@/services/movieDb.service';
-import MainLayout, { MainLayoutContext } from '@/components/layouts/MainLayout/MainLayout';
-import MoviesGrid from '@/components/layouts/MoviesGrid/MoviesGrid';
 import { IMoviesAPP, moviesEmpty } from '@/models/movies.type';
-import { useRouter } from 'next/router';
-import MovieNotFound from '@/components/messages/MovieNotFound';
+import MainLayout, { MainLayoutContext } from '@/components/layouts/MainLayout/MainLayout';
+import movieDbService from '@/services/movieDb.service';
+import MoviesGrid from '@/components/layouts/MoviesGrid/MoviesGrid';
+import NotFoundMovieModal from '@/components/modals/NotFoundMovieModal/NotFoundMovieModal';
 
 export interface ISearchPage {}
 
@@ -14,13 +14,21 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   const query = router.query.query;
   const mainLayoutCtx = useContext(MainLayoutContext);
   const [requestedMovies, setRequestedMovies] = useState<IMoviesAPP>(moviesEmpty);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  console.log(requestedMovies)
+  const isMovieValid =
+    requestedMovies.totalPages !== 0 &&
+    requestedMovies.movies[0].title &&
+    requestedMovies.movies[0].overview &&
+    requestedMovies.movies[0].posterImage &&
+    requestedMovies.movies[0].voteAverage;
 
   const searchMovies = async () => {
     if(query){
+      setLoading(true);
       const requestedMovies: IMoviesAPP = await movieDbService.searchMovies(query as string, 1);
       setRequestedMovies(requestedMovies);
+      setLoading(false);
     }
   };
 
@@ -55,8 +63,8 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
 
   return (
     <>
-      {requestedMovies.totalPages === 0 && <MovieNotFound />}
-      {requestedMovies.totalPages !==0 && <MoviesGrid movies={requestedMovies.movies} />}
+      {!isMovieValid && !loading && <NotFoundMovieModal />}
+      {isMovieValid && !loading &&  <MoviesGrid movies={requestedMovies.movies} />}
     </>
   );
 };
