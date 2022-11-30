@@ -1,5 +1,4 @@
 import SearchButton from "@/components/buttons/SearchButton/SearchButton";
-import BaseTemplate from "@/components/templates/base/BaseTemplate";
 
 export default function Home() {
   const backgroundColor = 'white';

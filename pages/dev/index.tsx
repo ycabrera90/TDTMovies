@@ -17,7 +17,8 @@ const urlDevPaths = [
 
   "/dev/cards/movie_card",
 
-  "/dev/messages/movie_not_found",
+  "/dev/modals/not_found_movie_modal",
+  "/dev/modals/loading_modal",
 
 ];
 

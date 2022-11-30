@@ -6,6 +6,7 @@ import MainLayout, { MainLayoutContext } from '@/components/layouts/MainLayout/M
 import movieDbService from '@/services/movieDb.service';
 import MoviesGrid from '@/components/layouts/MoviesGrid/MoviesGrid';
 import NotFoundMovieModal from '@/components/modals/NotFoundMovieModal/NotFoundMovieModal';
+import LoadingModal from '@/components/modals/LoadingModal/LoadingModal';
 
 export interface ISearchPage {}
 
@@ -63,8 +64,9 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
 
   return (
     <>
+      {loading && <LoadingModal />}
       {!isMovieValid && !loading && <NotFoundMovieModal />}
-      {isMovieValid && !loading &&  <MoviesGrid movies={requestedMovies.movies} />}
+      {isMovieValid && !loading && (<MoviesGrid movies={requestedMovies.movies} />)}
     </>
   );
 };

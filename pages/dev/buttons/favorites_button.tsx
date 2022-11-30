@@ -1,5 +1,4 @@
 import FavoritesButton from "@/components/buttons/FavoritesButton/FavoritesButton";
-import BaseTemplate from "@/components/templates/base/BaseTemplate";
 
 export default function Home() {
   const backgroundColor = 'white';
