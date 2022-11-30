@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 export interface ISearchPage {}
 
-const HomePage: NextPageWithLayout<ISearchPage> = () => {
+const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   const router = useRouter();
   const query = router.query.query;
   const mainLayoutCtx = useContext(MainLayoutContext);
@@ -57,8 +57,8 @@ const HomePage: NextPageWithLayout<ISearchPage> = () => {
   );
 };
 
-HomePage.getLayout = function getLayout(page: ReactElement) {
+SearchPage.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout scroll={{ trigger: 60 }}>{page}</MainLayout>; 
 };
 
-export default HomePage;
+export default SearchPage;
