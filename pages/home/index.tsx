@@ -4,11 +4,11 @@ import movieDbService from '@/services/movieDb.service';
 import MainLayout, { MainLayoutContext } from '@/components/layouts/MainLayout/MainLayout';
 import MoviesGrid from '@/components/layouts/MoviesGrid/MoviesGrid';
 import { IMoviesAPP, IMoviesResultsAPP } from '@/models/movies.type';
-export interface IHomeScreen {
+export interface IHomePage {
   popularMovies: IMoviesAPP;
 }
 
-const HomePage: NextPageWithLayout<IHomeScreen> = ({ popularMovies }) => {
+const HomePage: NextPageWithLayout<IHomePage> = ({ popularMovies }) => {
   const mainLayoutCtx = useContext(MainLayoutContext);
   const [movies, setMovies] = useState<IMoviesResultsAPP[]>([...popularMovies.movies]);
 
@@ -19,7 +19,7 @@ const HomePage: NextPageWithLayout<IHomeScreen> = ({ popularMovies }) => {
     }
   };
 
-  // if the scroll is above the 75% of the page, get more movies
+  // if the scroll is above the 60% of the page, get more movies
   useEffect(() => {
     getMorePopularMovies(mainLayoutCtx.scrollEvent);
   }, [mainLayoutCtx.scrollEvent]);

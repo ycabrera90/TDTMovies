@@ -36,6 +36,13 @@ export interface IMoviesAPP {
   movies: IMoviesResultsAPP[];
 }
 
+export const moviesEmpty: IMoviesAPP = {
+  currentPage: 0,
+  totalPages: 0,
+  totalResults: 0,
+  movies: [],
+}
+
 
 
 

@@ -13,11 +13,12 @@ export interface IMovieCard {
 }
 
 const MovieCard: FC<IMovieCard> = ({ className, title, overview, imageUrl, voteAverage }) => {
+  if (!title || !overview || !imageUrl || !voteAverage) {
+    return <></>;
+  }
+
   const cardDOM = useRef<HTMLInputElement>(null);
   const [cardHeight, setCardHeight ] = useState<number>(307.04);
-
-  const adaptedTitle = title.length > 45 ? title.slice(0, 45) + '...' : title;
-  const adaptedOverview = overview.length > 71 ? overview.slice(0, 71) + '...' : overview;
 
   useEffect(() => {
     new ResizeObserver(()=>{
@@ -28,25 +29,25 @@ const MovieCard: FC<IMovieCard> = ({ className, title, overview, imageUrl, voteA
   }, []);
 
   return (
-    <article 
+    <article
       className={[styles.container, className ? className : ''].join(' ')}
       ref={cardDOM}
-      style={{height: cardHeight}}
+      style={{ height: cardHeight }}
     >
       <div className={styles['bottom-fog']} />
       <span className={styles.gadge}>{voteAverage}</span>
-      <h1 className={styles.title}>{adaptedTitle}</h1>
-      <p className={styles.overview}>{adaptedOverview}</p>
+      <h1 className={styles.title}>{title}</h1>
+      <p className={styles.overview}>{overview}</p>
       <Image
         className={styles.image}
         alt={title}
         src={`${imageUrl ? imageUrl : ''}`}
-        fill                                            
+        fill
         sizes="50vw"
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: 'cover' }}
         priority
-    />
-    <AddRemButton className={styles['add-rem-button']} type="add"/>
+      />
+      <AddRemButton className={styles['add-rem-button']} type="add" />
     </article>
   );
 };
