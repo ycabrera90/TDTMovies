@@ -39,7 +39,7 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
   return (
     <CSSTransition 
       in={!firstMount}
-      timeout={1000}
+      timeout={1}
       mountOnEnter
       unmountOnExit
       classNames={{ enterDone: styles.entered }}
