@@ -4,6 +4,7 @@ import CloseButton from "@/components/buttons/CloseButton/CloseButton";
 import { IDetailAPP } from "@/models/detailMovie.type";
 import { Skeleton } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { FC, useState } from "react";
 import InfoData from "../InfoData/InfoData";
 import styles from "./MovieDetails.module.scss";
@@ -28,7 +29,7 @@ const MovieDetails: FC<IMovieDetails> = ({
   },
 }) => {
   const [imageLoading, setImageLoading] = useState<boolean>(true);
-
+  const router = useRouter();
   return (
     <article
       className={[styles.container, className ? className : ''].join(' ')}
@@ -55,7 +56,7 @@ const MovieDetails: FC<IMovieDetails> = ({
               className={styles['add-remove-button']}
             />
           </div>
-          <CloseButton />
+          <CloseButton onClick={() => router.back() } />
         </header>
         <article className={styles.genres}>
           {genres.map((genre, index) => (

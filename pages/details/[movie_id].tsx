@@ -21,9 +21,9 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
     if(typeof movieId === 'string'){
       setLoading(true);
       try{
-        const requestedMovies: IDetailAPP = await movieDbService.getMovieDetails(+movieId);
+        const requestedDetails: IDetailAPP = await movieDbService.getMovieDetails(+movieId);
         setMovieDetailsValid(true);
-        setMovieDetails(requestedMovies);
+        setMovieDetails(requestedDetails);
       } catch (error) {
         setMovieDetailsValid(false);
       }
