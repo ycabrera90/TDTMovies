@@ -26,11 +26,10 @@
                 font-family: $font1;
                 font-size: 3rem;
                 font-weight: 600;
-                color: #1C1C1C;
-                line-height: 75.43px;
+                line-height: 2.5rem;
             }
 
-            div{
+            .add-remove-button__container {
                 flex-grow: 1;
                 .add-remove-button{
                     border: 2.29px solid black;
@@ -45,7 +44,21 @@
 
         .genres{
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+
+
+            .genres-item{
+                font-family: $font1;
+                font-size: 1.25rem;
+                font-weight: 600;
+                line-height: 31.43px;
+                color: #ffffff;
+                line-height: 28.57px;
+                background: #66CCCC;
+                border-radius: 7px;
+                padding: 0.2rem 0.4rem;
+            }
         }
 
 

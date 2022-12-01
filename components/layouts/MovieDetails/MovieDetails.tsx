@@ -1,5 +1,6 @@
 // v1.0.4
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
+import CloseButton from "@/components/buttons/CloseButton/CloseButton";
 import { IDetailAPP } from "@/models/detailMovie.type";
 import Image from "next/image";
 import { run } from "node:test";
@@ -44,36 +45,42 @@ const MovieDetails: FC<IMovieDetails> = ({
       <section className={styles.info}>
         <header>
           <h1 className={styles.title}>{title}</h1>
-          <div>
-            <AddRemButton type="remove" className={styles['add-remove-button']}/>
+          <div className={styles['add-remove-button__container']}>
+            <AddRemButton
+              type="remove"
+              className={styles['add-remove-button']}
+            />
           </div>
-          <span className={styles['close-button']}>X</span>
+          <CloseButton />
         </header>
         <article className={styles.genres}>
-          <span>Accion</span>
-          <span>Fantasia</span>
-          <span>Ciencia Ficcion</span>
+          {genres.map((genre, index) => (
+            <span key={index} className={styles['genres-item']}>
+              {genre}
+            </span>
+          ))}
         </article>
         <p className={styles.overview}>{overview}</p>
         <div>
-          <label>Presupuesto:</label><span>{`${budget}$`}</span>
+          <label>Presupuesto:</label>
+          <span>{`${budget}$`}</span>
         </div>
         <div>
-          <label>Lanzamiento:</label><span>{releaseDate}</span>
+          <label>Lanzamiento:</label>
+          <span>{releaseDate}</span>
         </div>
         <div>
-          <label>Duracion:</label><span>{`${runtime} min`}</span>
+          <label>Duracion:</label>
+          <span>{`${runtime} min`}</span>
         </div>
         <div>
-          <label>Valoración:</label><span>{voteAverage}</span>
+          <label>Valoración:</label>
+          <span>{voteAverage}</span>
         </div>
         <article className={styles.languajes}>
           <span>English</span>
           <span>Dansk</span>
         </article>
-
-
-
       </section>
     </article>
   );
