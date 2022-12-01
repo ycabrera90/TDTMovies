@@ -1,6 +1,5 @@
-import { moviesAdapter } from "@/adapters/movieDb.adapter";
+import { detailMovieAdapter, moviesAdapter } from "@/adapters/movieDb.adapter";
 import httpClient from "@/helpers/httpClient";
-import { IMoviesAPP } from "@/models/movies.type";
 
 export const apiUrl = "https://api.themoviedb.org/3";
 export const imageBaseUrl = "https://image.tmdb.org/t/p";
@@ -28,12 +27,23 @@ const apiEndPoints = {
         query: "",
       },
     },
-  }
+  },
+
+  details: {
+    path: "/movie/:movieId",
+    options: {
+      params: {
+        api_key: `${process.env.NEXT_PUBLIC_API_KEY}`,
+        language: "es",
+      },
+    },
+  },
 };
 
 export interface IMovieDbService {
   getPopularMovies: (page?:number) => Promise<any>;
   searchMovies: (query: string, page?:number) => Promise<any>;
+  getMovieDetails: (movieId: number) => Promise<any>;
 }
 
 const movieDbService: IMovieDbService = {
@@ -48,7 +58,13 @@ const movieDbService: IMovieDbService = {
     apiEndPoints.search.options.params.query = query;
     const data = await httpClient.get(`${apiUrl}${apiEndPoints.search.path}`,apiEndPoints.search.options);
     return moviesAdapter(data);
-  }
+  },
+
+  getMovieDetails: async (movieId) => {
+    apiEndPoints.details.path = apiEndPoints.details.path.replace(":movieId", `${movieId}`);
+    const data = await httpClient.get(`${apiUrl}${apiEndPoints.details.path}`,apiEndPoints.details.options);
+    return detailMovieAdapter(data);
+  },
 }
 
 export default movieDbService;

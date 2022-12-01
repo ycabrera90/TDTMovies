@@ -60,6 +60,18 @@ export interface IDetailAPP {
   posterImage: string | null;
 }
 
+export const detailMovieEmpty: IDetailAPP = {
+  title: '',
+  genres: [],
+  overview: '',
+  budget: 0,
+  releaseDate: '',
+  runtime: null,
+  voteAverage: 0,
+  spokenLanguages: [],
+  posterImage: null,
+};
+
 
 
 

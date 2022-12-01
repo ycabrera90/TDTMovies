@@ -2,9 +2,9 @@
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
 import CloseButton from "@/components/buttons/CloseButton/CloseButton";
 import { IDetailAPP } from "@/models/detailMovie.type";
+import { Skeleton } from "antd";
 import Image from "next/image";
-import { run } from "node:test";
-import { FC } from "react";
+import { FC, useState } from "react";
 import InfoData from "../InfoData/InfoData";
 import styles from "./MovieDetails.module.scss";
 
@@ -27,6 +27,8 @@ const MovieDetails: FC<IMovieDetails> = ({
     voteAverage,
   },
 }) => {
+  const [imageLoading, setImageLoading] = useState<boolean>(true);
+
   return (
     <article
       className={[styles.container, className ? className : ''].join(' ')}
@@ -38,10 +40,11 @@ const MovieDetails: FC<IMovieDetails> = ({
           src={`${posterImage ? posterImage : ''}`}
           fill
           sizes="50vw"
-          style={{ objectFit: 'cover' }}
+          // style={{ objectFit: 'cover' }}
           priority
-          // onLoadingComplete={() => setImageLoading(false)}
+          onLoadingComplete={() => setImageLoading(false)}
         />
+        {imageLoading && <Skeleton.Image active={true} className={styles.skeleton} />}
       </section>
       <section className={styles.info}>
         <header>

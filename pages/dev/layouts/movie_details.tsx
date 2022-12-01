@@ -1,6 +1,6 @@
 import MovieDetails from "@/components/layouts/MovieDetails/MovieDetails";
 
-const dummyMovieDetails = {
+export const dummyMovieDetails = {
   title: 'Black Adam',
   genres: [
     'Acción',

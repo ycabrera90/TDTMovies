@@ -10,16 +10,18 @@ export interface IMoviesGrid {
 const MoviesGrid: FC<IMoviesGrid> = ({movies}) => {
   return (
     <div className={styles.container}>
-      {movies.map(({title,overview,posterImage,voteAverage}, index) => (
+      {movies.map(({id, title, overview, posterImage, voteAverage}, index) => {
+        return(
         <MovieCard
           key={index}
+          id={id}
           title={title}
           imageUrl={posterImage}
           overview={overview}
           voteAverage={voteAverage}
           className={styles["movie-card"]}
         />
-      ))}
+      )})}
     </div>
   );
 };

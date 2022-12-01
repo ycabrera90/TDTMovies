@@ -23,6 +23,7 @@ export interface IMoviesAPI {
 }
 
 export interface IMoviesResultsAPP {
+  id: number;
   title: string;
   overview: string;
   posterImage: string | null;

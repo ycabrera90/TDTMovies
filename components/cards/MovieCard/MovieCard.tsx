@@ -5,20 +5,23 @@ import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
 import CSSTransition from "react-transition-group/CSSTransition";
 import styles from "./MovieCard.module.scss";
 import { Skeleton } from "antd";
+import { useRouter } from "next/router";
 
 export interface IMovieCard {
   className?: string;
+  id: number;
   title: string;
   overview: string;
   imageUrl: string | null;
   voteAverage: number;
 }
 
-const MovieCard: FC<IMovieCard> = ({ className, title, overview, imageUrl, voteAverage }) => {
+const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, voteAverage }) => {
   const [validMovie, setValidMovie] = useState<boolean>(false);
   const [imageLoading, setImageLoading] = useState<boolean>(true);
   const [cardHeight, setCardHeight ] = useState<number>(307.04);
   const cardDOM = useRef<HTMLInputElement>(null);
+  const router = useRouter();
   
   useEffect(() => {
       const invalid = title && overview && imageUrl && voteAverage;
@@ -27,7 +30,6 @@ const MovieCard: FC<IMovieCard> = ({ className, title, overview, imageUrl, voteA
 
   useEffect(() => {
     if(validMovie) {
-
       new ResizeObserver(()=>{
         if(cardDOM.current){
           setCardHeight(cardDOM.current?.clientWidth * 1.26);
@@ -65,6 +67,7 @@ const MovieCard: FC<IMovieCard> = ({ className, title, overview, imageUrl, voteA
           style={{ objectFit: 'cover' }}
           priority
           onLoadingComplete={() => setImageLoading(false)}
+          onClick={() => router.push(`/details/${id}`)}
         />
         <AddRemButton className={styles['add-rem-button']} type="add" />
       </article>

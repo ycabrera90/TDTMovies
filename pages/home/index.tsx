@@ -4,6 +4,7 @@ import movieDbService from '@/services/movieDb.service';
 import MainLayout, { MainLayoutContext } from '@/components/layouts/MainLayout/MainLayout';
 import MoviesGrid from '@/components/layouts/MoviesGrid/MoviesGrid';
 import { IMoviesAPP, IMoviesResultsAPP } from '@/models/movies.type';
+
 export interface IHomePage {
   popularMovies: IMoviesAPP;
 }
