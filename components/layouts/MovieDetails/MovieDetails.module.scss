@@ -1,0 +1,61 @@
+@import "styles/fonts.module.scss";
+.container {
+    display: flex;
+    gap: 1rem;
+
+    .poster{
+        position: relative;
+        max-width: 41.3vw;
+        min-width: 41.3vw;
+        min-height: calc(41.3vw * 1.26);
+        max-height: calc(41.3vw * 1.26);
+    }
+
+    .info{
+        width: 100%;
+        border: red solid 1px;
+
+        header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+
+            .title{
+                margin: 0;
+                font-family: $font1;
+                font-size: 3rem;
+                font-weight: 600;
+                color: #1C1C1C;
+                line-height: 75.43px;
+            }
+
+            div{
+                flex-grow: 1;
+                .add-remove-button{
+                    border: 2.29px solid black;
+                    span {
+                        background: black;
+                    }
+                }
+            }
+    
+            
+        }
+
+        .genres{
+            display: flex;
+            gap: 1rem;
+        }
+
+
+
+
+
+
+
+
+
+    }
+
+}

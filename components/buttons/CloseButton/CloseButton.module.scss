@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    opacity: 0.9;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:active {
+        opacity: 0.9;
+    }
+
+    svg {
+        width: 22.61px;
+        height: 23.29px;
+    }
+}

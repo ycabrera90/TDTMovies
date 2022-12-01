@@ -4,11 +4,10 @@ import styles from "./SearchButton.module.scss";
 
 export interface ISearchButton {
   className?: string;
-  amount?: number;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const SearchButton: FC<ISearchButton> = ({ className, amount, onClick }) => {
+const SearchButton: FC<ISearchButton> = ({ className, onClick }) => {
   return (
     <button className={[styles.container, className ? className : ''].join(' ')}
     onClick={onClick}
