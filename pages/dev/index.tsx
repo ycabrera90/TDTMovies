@@ -16,6 +16,7 @@ const urlDevPaths = [
   "/dev/layouts/main_layout",
   "/dev/layouts/movies_grip",
   "/dev/layouts/movie_details",
+  "/dev/layouts/info_data",
 
   "/dev/cards/movie_card",
 

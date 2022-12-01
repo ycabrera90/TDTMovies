@@ -1,0 +1,25 @@
+@import "styles/fonts.module.scss";
+
+.container {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+
+    label {
+        font-family: $font1;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 37.72px;
+        color: #4B4B4B;
+    }
+
+    span {
+        font-family: $font1;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 37.72px;
+        color: #4B4B4B;
+    }
+}

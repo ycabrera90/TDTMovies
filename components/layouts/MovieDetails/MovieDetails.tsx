@@ -5,6 +5,7 @@ import { IDetailAPP } from "@/models/detailMovie.type";
 import Image from "next/image";
 import { run } from "node:test";
 import { FC } from "react";
+import InfoData from "../InfoData/InfoData";
 import styles from "./MovieDetails.module.scss";
 
 export interface IMovieDetails {
@@ -61,25 +62,16 @@ const MovieDetails: FC<IMovieDetails> = ({
           ))}
         </article>
         <p className={styles.overview}>{overview}</p>
-        <div>
-          <label>Presupuesto:</label>
-          <span>{`${budget}$`}</span>
-        </div>
-        <div>
-          <label>Lanzamiento:</label>
-          <span>{releaseDate}</span>
-        </div>
-        <div>
-          <label>Duracion:</label>
-          <span>{`${runtime} min`}</span>
-        </div>
-        <div>
-          <label>Valoración:</label>
-          <span>{voteAverage}</span>
-        </div>
+        <InfoData tag="Presupuesto" value={budget} unit="$" />
+        <InfoData tag="Lanzamiento" value={releaseDate} />
+        <InfoData tag="Duración" value={runtime ? runtime : ''} unit="min" />
+        <InfoData tag="Valoración" value={voteAverage} />
         <article className={styles.languajes}>
-          <span>English</span>
-          <span>Dansk</span>
+          {spokenLanguages.map((genre, index) => (
+            <span key={index} className={styles['genres-item']}>
+              {genre}
+            </span>
+          ))}
         </article>
       </section>
     </article>
