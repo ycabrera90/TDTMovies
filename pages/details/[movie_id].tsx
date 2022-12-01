@@ -17,23 +17,23 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   const [movieDetailsValid, setMovieDetailsValid] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const getDetails = async () => {
-    if(typeof movieId === 'string'){
-      setLoading(true);
-      try{
-        const requestedDetails: IDetailAPP = await movieDbService.getMovieDetails(+movieId);
-        setMovieDetailsValid(true);
-        setMovieDetails(requestedDetails);
-      } catch (error) {
-        setMovieDetailsValid(false);
-      }
-      setLoading(false);
+  const getDetails = async ( id:number ) => {
+    setLoading(true);
+    try {
+      const requestedDetails: IDetailAPP = await movieDbService.getMovieDetails(id);
+      setMovieDetailsValid(true);
+      setMovieDetails(requestedDetails);
+    } catch (error) {
+      setMovieDetailsValid(false);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
-    getDetails();
-    setLoading(false);
+    if (movieId && typeof movieId === 'string') {
+      getDetails(+movieId);
+      setLoading(false);
+    }
   }, [movieId]);
 
   return (

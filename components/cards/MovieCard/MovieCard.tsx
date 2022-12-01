@@ -6,6 +6,7 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import styles from "./MovieCard.module.scss";
 import { Skeleton } from "antd";
 import { useRouter } from "next/router";
+import { on } from "process";
 
 export interface IMovieCard {
   className?: string;
@@ -38,6 +39,10 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
     }
   }, [validMovie]);
 
+  const clickImageHandler = () => {
+    router.push(`/details/${id}`);
+  }
+  
   return (
     <CSSTransition
       in={validMovie}
@@ -67,7 +72,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
           style={{ objectFit: 'cover' }}
           priority
           onLoadingComplete={() => setImageLoading(false)}
-          onClick={() => router.push(`/details/${id}`)}
+          onClick={clickImageHandler}
         />
         <AddRemButton className={styles['add-rem-button']} type="add" />
       </article>

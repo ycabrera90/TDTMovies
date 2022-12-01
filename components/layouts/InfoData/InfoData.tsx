@@ -18,7 +18,6 @@ const InfoData: FC<IInfoData> = ({ className, tag, value, unit }) => {
     formattedValue = value;
   }
 
-  console.log(console.log(new Intl.NumberFormat('de-DE').format(200000000)))
   return (
     <div className={[styles.container, className ? className : ''].join(' ')}>
       <label>{`${tag}:`}</label>

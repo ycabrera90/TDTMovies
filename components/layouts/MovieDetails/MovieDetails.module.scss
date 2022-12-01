@@ -6,6 +6,12 @@
     gap: 2.63rem;
     flex-wrap: wrap;
     justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    &.entered {
+        opacity: 1;
+    }
 
     .poster {
         position: relative;

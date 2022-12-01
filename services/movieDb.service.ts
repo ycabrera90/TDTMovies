@@ -61,8 +61,8 @@ const movieDbService: IMovieDbService = {
   },
 
   getMovieDetails: async (movieId) => {
-    apiEndPoints.details.path = apiEndPoints.details.path.replace(":movieId", `${movieId}`);
-    const data = await httpClient.get(`${apiUrl}${apiEndPoints.details.path}`,apiEndPoints.details.options);
+    const detailPath = apiEndPoints.details.path.replace(":movieId", `${movieId}`);
+    const data = await httpClient.get(`${apiUrl}${detailPath}`,apiEndPoints.details.options);
     return detailMovieAdapter(data);
   },
 }
