@@ -1,5 +1,5 @@
 import { FC, MouseEventHandler } from "react";
-import SearchSVG from "@/public/search.svg";
+import {SearchOutlined} from "@ant-design/icons";
 import styles from "./SearchButton.module.scss";
 
 export interface ISearchButton {
@@ -9,11 +9,10 @@ export interface ISearchButton {
 
 const SearchButton: FC<ISearchButton> = ({ className, onClick }) => {
   return (
-    <button className={[styles.container, className ? className : ''].join(' ')}
-    onClick={onClick}
-    >
-      <SearchSVG/>
-    </button>
+    <SearchOutlined
+      className={[styles.container, className ? className : ''].join(' ')}
+      onClick={onClick}
+    />
   );
 };
 export default SearchButton;
