@@ -44,7 +44,7 @@
         z-index: -1;
     }
 
-    .gadge {
+    .badge {
         position: absolute;
         z-index: 4;
         top: 1.56rem;
@@ -56,6 +56,8 @@
         font-size: 1.5rem;
         color: #FFFFFF;
         padding: 0.44rem 0.25rem;
+        min-width: 2.5rem;
+        text-align: center;
     }
 
     .title {

@@ -37,14 +37,16 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
   }, []);
   
   return (
-    <CSSTransition 
+    <CSSTransition
       in={!firstMount}
       timeout={1}
       mountOnEnter
       unmountOnExit
       classNames={{ enterDone: styles.entered }}
     >
-      <article className={[styles.container, className ? className : ''].join(' ')}>
+      <article
+        className={[styles.container, className ? className : ''].join(' ')}
+      >
         <section className={styles.poster}>
           <Image
             className={styles.image}
@@ -69,14 +71,21 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
                 className={styles['add-remove-button']}
               />
             </div>
-            <CloseButton onClick={() => router.back()} />
+            <CloseButton
+              className={styles['close-button']}
+              onClick={() => router.back()}
+            />
           </header>
           <article className={styles.genres}>
-            {genres.map((genre, index) => (
-              <span key={index} className={styles['genres-item']}>
-                {genre}
-              </span>
-            ))}
+            {genres.map((genre, index) => {
+              if (genre) {
+                return (
+                  <span key={index} className={styles['genres-item']}>
+                    {genre}
+                  </span>
+                );
+              }
+            })}
           </article>
           <p className={styles.overview}>{overview}</p>
           <InfoData tag="Presupuesto" value={budget} unit="$" />
@@ -84,16 +93,19 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
           <InfoData tag="Duración" value={runtime ? runtime : ''} unit="min" />
           <InfoData tag="Valoración" value={voteAverage} />
           <article className={styles.languajes}>
-            {spokenLanguages.map((genre, index) => (
-              <span key={index} className={styles['genres-item']}>
-                {genre}
-              </span>
-            ))}
+            {spokenLanguages.map((lang, index) => {
+              if (lang) {
+                return (
+                  <span key={index} className={styles['genres-item']}>
+                    {lang}
+                  </span>
+                );
+              }
+            })}
           </article>
         </section>
       </article>
     </CSSTransition>
-
   );
 };
 

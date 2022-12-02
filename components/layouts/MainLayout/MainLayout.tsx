@@ -20,20 +20,25 @@ const MainLayout: FC<IMainLayout> = ({ className, children, scroll }) => {
     if (!scroll) {
       return;
     }
-    const domElement = event.target;
-    let scrolledContainer = domElement.scrollTop;
-    let containerHeight = domElement.getBoundingClientRect().height;
-    let itemsHeght = domElement.childNodes[0].getBoundingClientRect().height;
-    let maxScrollItems = itemsHeght - containerHeight;
-    let percentScrolledContainer = (scrolledContainer / maxScrollItems) * 100;
-    if (percentScrolledContainer > scroll.trigger) {
-      if (scrollEvents) {
-        setScrollEvent((state) => state + 1);
-        scrollEvents = false;
-        setTimeout(() => {
-          scrollEvents = true;
-        }, 1000);
+
+    try {
+      const domElement = event.target;
+      let scrolledContainer = domElement.scrollTop;
+      let containerHeight = domElement.getBoundingClientRect().height;
+      let itemsHeght = domElement.childNodes[0].getBoundingClientRect().height;
+      let maxScrollItems = itemsHeght - containerHeight;
+      let percentScrolledContainer = (scrolledContainer / maxScrollItems) * 100;
+      if (percentScrolledContainer > scroll.trigger) {
+        if (scrollEvents) {
+          setScrollEvent((state) => state + 1);
+          scrollEvents = false;
+          setTimeout(() => {
+            scrollEvents = true;
+          }, 1000);
+        }
       }
+    } catch (error) {
+      // console.error(error);
     }
   };
 
