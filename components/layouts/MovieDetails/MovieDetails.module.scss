@@ -30,7 +30,7 @@
         .skeleton {
             position: absolute;
             inset: 0px 0px 0px 0px;
-    
+
             :global {
                 .ant-skeleton-image {
                     display: flex;
@@ -44,7 +44,7 @@
 
     .info {
         width: 90vw;
-        
+
         @media (min-width: $sm-screens) {
             min-width: 400px;
             width: 43.3vw;
@@ -55,7 +55,6 @@
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             gap: 1rem;
             margin: 0.1rem 0;
 
@@ -65,21 +64,16 @@
                 font-size: 3rem;
                 font-weight: 600;
                 line-height: 2.9rem;
+                width: 85%;
+                color: #1C1C1C;
             }
 
-            .add-remove-button__container {
-                flex-grow: 1;
-
-                .add-remove-button {
-                    border: 2.29px solid black;
-
-                    span {
-                        background: black;
-                    }
-                }
+            .add-remove-button {
+                color: black;
+                margin-left: 5%;
             }
 
-            .close-button{
+            .close-button {
                 position: absolute;
                 top: 0px;
                 right: 0px;
@@ -92,12 +86,11 @@
             margin: 1.5rem 0;
             flex-wrap: wrap;
 
-
             .genres-item {
                 font-family: $font1;
                 font-size: 1.25rem;
                 font-weight: 600;
-                line-height: 31.43px;
+                line-height: 1.96rem;
                 color: #ffffff;
                 line-height: 28.57px;
                 background: #66CCCC;
@@ -110,7 +103,7 @@
             font-family: $font1;
             font-size: 1.5rem;
             font-weight: 400;
-            line-height: 37.72px;
+            line-height: 2.36rem;
             color: #4B4B4B;
         }
 
@@ -126,9 +119,9 @@
                 font-family: $font1;
                 font-size: 1.38rem;
                 font-weight: 600;
-                line-height: 31.43px;
                 color: #ffffff;
                 line-height: 34.57px;
+                line-height: 2.16rem;
                 background: #66CCCC;
                 border-radius: 7px;
                 padding: 0.2rem 0.4rem;

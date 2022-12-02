@@ -7,7 +7,7 @@ const urlDevPaths = [
   "/dev/buttons/favorites_button",
   "/dev/buttons/search_button",
   "/dev/buttons/add_rem_button",
-  "/dev/buttons/close-button",
+  "/dev/buttons/close_button",
 
   "/dev/inputs/search_input",
   "/dev/icons/tdt_icon",

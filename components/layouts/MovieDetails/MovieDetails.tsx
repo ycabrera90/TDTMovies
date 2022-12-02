@@ -64,13 +64,13 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
         </section>
         <section className={styles.info}>
           <header>
-            <h1 className={styles.title}>{title}</h1>
-            <div className={styles['add-remove-button__container']}>
+            <h1 className={styles.title}>
+              {title}
               <AddRemButton
                 type="remove"
                 className={styles['add-remove-button']}
               />
-            </div>
+            </h1>
             <CloseButton
               className={styles['close-button']}
               onClick={() => router.back()}

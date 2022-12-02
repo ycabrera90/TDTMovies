@@ -1,21 +1,14 @@
-.container {
-    display: flex;
-    justify-content: center;
-    background: transparent;
+.icon {
     cursor: pointer;
-    border: none;
-    opacity: 0.9;
+    opacity: 1;
+    font-size: 2rem;
+    transition: opacity 0.1s ease-in-out;
 
     &:hover {
-        opacity: 1;
+        opacity: 0.8;
     }
 
     &:active {
-        opacity: 0.9;
-    }
-
-    svg {
-        width: 22.61px;
-        height: 23.29px;
+        opacity: 1;
     }
 }
