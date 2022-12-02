@@ -30,7 +30,7 @@
         .skeleton {
             position: absolute;
             inset: 0px 0px 0px 0px;
-    
+
             :global {
                 .ant-skeleton-image {
                     display: flex;
@@ -67,22 +67,12 @@
                 width: 85%;
             }
 
-            .add-remove-button__container {
-                position: relative;
-                top: -0.75rem;
-                margin-left: 1rem;
-                display: inline-block;
-                
-                .add-remove-button {
-                    border: 2.29px solid black;
-                    span {
-                        background: black;
-                    }
-                }
+            .add-remove-button {
+                color: black;
+                margin-left: 5%;
             }
 
-
-            .close-button{
+            .close-button {
                 position: absolute;
                 top: 0px;
                 right: 0px;
@@ -94,7 +84,6 @@
             gap: 0.5rem 4%;
             margin: 1.5rem 0;
             flex-wrap: wrap;
-
 
             .genres-item {
                 font-family: $font1;

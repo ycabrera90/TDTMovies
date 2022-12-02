@@ -66,12 +66,10 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
           <header>
             <h1 className={styles.title}>
               {title}
-              <span className={styles['add-remove-button__container']}>
-                <AddRemButton
-                  type="remove"
-                  className={styles['add-remove-button']}
-                />
-              </span>
+              <AddRemButton
+                type="remove"
+                className={styles['add-remove-button']}
+              />
             </h1>
             <CloseButton
               className={styles['close-button']}
