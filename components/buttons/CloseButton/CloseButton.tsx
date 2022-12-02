@@ -1,6 +1,7 @@
 // v1.0.4
 import { FC, MouseEventHandler } from "react";
 import XSVG from "@/public/x_image.svg";
+import { CloseOutlined } from '@ant-design/icons';
 import styles from "./CloseButton.module.scss";
 
 export interface ICloseButton {
@@ -10,9 +11,10 @@ export interface ICloseButton {
 
 const CloseButton: FC<ICloseButton> = ({ className, onClick }) => {
   return (
-    <button className={[styles.container, className ? className : ''].join(' ')} onClick={onClick} >
-      <XSVG/>
-    </button>
+    <CloseOutlined
+      className={[styles.icon, className ? className : ''].join(' ')}
+      onClick={onClick}
+    />
   );
 };
 
