@@ -1,4 +1,5 @@
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
+import { MinusCircleOutlined } from '@ant-design/icons';
 
 export default function Home() {
   const backgroundColor = 'black';
