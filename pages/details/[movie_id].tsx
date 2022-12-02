@@ -14,8 +14,8 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   const router = useRouter();
   const movieId = router.query.movie_id;
   const [movieDetails, setMovieDetails] = useState<IDetailAPP>(detailMovieEmpty);
-  const [movieDetailsValid, setMovieDetailsValid] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [movieDetailsValid, setMovieDetailsValid] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const getDetails = async ( id:number ) => {
     setLoading(true);
@@ -32,7 +32,6 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   useEffect(() => {
     if (movieId && typeof movieId === 'string') {
       getDetails(+movieId);
-      setLoading(false);
     }
   }, [movieId]);
 

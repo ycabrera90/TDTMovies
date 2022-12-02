@@ -15,21 +15,24 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   const query = router.query.query;
   const mainLayoutCtx = useContext(MainLayoutContext);
   const [requestedMovies, setRequestedMovies] = useState<IMoviesAPP>(moviesEmpty);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  const isMovieValid =
-    requestedMovies.totalPages !== 0 &&
-    requestedMovies.movies[0].title &&
-    requestedMovies.movies[0].overview &&
-    requestedMovies.movies[0].posterImage &&
-    requestedMovies.movies[0].voteAverage;
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isMovieValid, setIsMovieValid] = useState<boolean>(true);
 
   const searchMovies = async () => {
     if(query){
       setLoading(true);
       const requestedMovies: IMoviesAPP = await movieDbService.searchMovies(query as string, 1);
-      setRequestedMovies(requestedMovies);
       setLoading(false);
+      setRequestedMovies(requestedMovies);
+      setIsMovieValid(
+        !!(
+          requestedMovies.totalPages !== 0 &&
+          requestedMovies.movies[0].title &&
+          requestedMovies.movies[0].overview &&
+          requestedMovies.movies[0].posterImage &&
+          requestedMovies.movies[0].voteAverage
+        )
+      );
     }
   };
 
@@ -43,11 +46,7 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
     }
 
     if (page < requestedMovies.totalPages) {
-      const moreMovies = await movieDbService.searchMovies(
-        query as string,
-        page
-      );
-      
+      const moreMovies = await movieDbService.searchMovies(query as string, page);
       setRequestedMovies((state) => {
         return {
           ...state,

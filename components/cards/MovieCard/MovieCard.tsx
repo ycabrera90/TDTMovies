@@ -6,7 +6,6 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import styles from "./MovieCard.module.scss";
 import { Skeleton } from "antd";
 import { useRouter } from "next/router";
-import { on } from "process";
 
 export interface IMovieCard {
   className?: string;
@@ -60,7 +59,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
           <Skeleton.Image active={true} className={styles.skeleton} />
         )}
         <div className={styles['bottom-fog']} />
-        <span className={styles.gadge}>{voteAverage}</span>
+        <span className={styles.badge}>{voteAverage}</span>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.overview}>{overview}</p>
         <Image
