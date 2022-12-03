@@ -40,7 +40,7 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
 
   const addRemButtonClickHandler = (action: "add" | "remove") => {
     if (action === 'add') {
-      dispatch(authActions.addFavoriteMovie({id,title,overview,imageUrl:posterImage,voteAverage}))
+      dispatch(authActions.addFavoriteMovie({id,title,overview,posterImage,voteAverage}))
     }
     
     if (action === 'remove') {

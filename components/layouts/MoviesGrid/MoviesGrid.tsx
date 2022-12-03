@@ -8,6 +8,7 @@ export interface IMoviesGrid {
 }
 
 const MoviesGrid: FC<IMoviesGrid> = ({movies}) => {
+  console.log(movies);
   return (
     <div className={styles.container}>
       {movies.map(({id, title, overview, posterImage, voteAverage}, index) => {

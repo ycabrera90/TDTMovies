@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction  } from "@reduxjs/toolkit";
 import type { RootState } from '@/redux/store'
 import localStorageDrive from "@/helpers/localStorageDriver";
-import { IFavoritesMovies } from "@/models/favoriteMovie";
+import { IMoviesResultsAPP } from "@/models/movies.type";
 
 interface AuthSlice {
-  favoriteMovies: IFavoritesMovies[];
+  favoriteMovies: IMoviesResultsAPP[];
   totalFavoriteMovies: number;
 }
 

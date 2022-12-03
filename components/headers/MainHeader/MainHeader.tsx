@@ -25,7 +25,9 @@ const MainHeader: FC<IMainHeader> = ({ className }) => {
       {largeHeader && (
         <>
           <SearchForm />
-          <FavoritesButton amount={totalFavoriteMovies} />
+          <FavoritesButton 
+            amount={totalFavoriteMovies} 
+            onClick={() => router.push('/favorites')} />
         </>
       )}
     </header>

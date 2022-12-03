@@ -29,7 +29,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
 
   const addRemButtonClickHandler = (action: "add" | "remove") => {
     if (action === 'add') {
-      dispatch(authActions.addFavoriteMovie({id, title, overview, imageUrl, voteAverage}))
+      dispatch(authActions.addFavoriteMovie({id, title, overview, posterImage: imageUrl, voteAverage}))
     }
     
     if (action === 'remove') {
@@ -63,7 +63,6 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
       setAddRemBttnType('add')
     }
   }, [favoriteMovies])
-  
 
   return (
     <CSSTransition
