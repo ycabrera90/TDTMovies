@@ -4,10 +4,9 @@ import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { Skeleton } from "antd";
 import { useRouter } from "next/router";
-import styles from "./MovieCard.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { authActions } from "@/redux/slices/authSlice";
-
+import styles from "./MovieCard.module.scss";
 
 export interface IMovieCard {
   className?: string;
@@ -30,7 +29,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
 
   const addRemButtonClickHandler = (action: "add" | "remove") => {
     if (action === 'add') {
-      dispatch(authActions.addFavoriteMovie(id))
+      dispatch(authActions.addFavoriteMovie({id, title, overview, imageUrl, voteAverage}))
     }
     
     if (action === 'remove') {
@@ -58,7 +57,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
   }, [validMovie]);
 
   useEffect(() => {
-    if(favoriteMovies.includes(id)) {
+    if (favoriteMovies.find(movie => movie.id === id)) {
       setAddRemBttnType('remove')
     } else {
       setAddRemBttnType('add')

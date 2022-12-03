@@ -18,7 +18,10 @@ const CustomProvider: FC<{children : ReactNode}> = ({ children }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(authActions.setAuth(localStorageDrive.getValue("userData")));
+    const userDatas = localStorageDrive.getValue('userData');
+    if (userDatas) {
+      dispatch(authActions.setAuth(userDatas));
+    }
   }, []);
 
   return <>{children}</>;

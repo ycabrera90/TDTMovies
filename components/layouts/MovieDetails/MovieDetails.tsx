@@ -40,7 +40,7 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
 
   const addRemButtonClickHandler = (action: "add" | "remove") => {
     if (action === 'add') {
-      dispatch(authActions.addFavoriteMovie(id))
+      dispatch(authActions.addFavoriteMovie({id,title,overview,imageUrl:posterImage,voteAverage}))
     }
     
     if (action === 'remove') {
@@ -53,7 +53,7 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
   }, []);
 
   useEffect(() => {
-    if(favoriteMovies.includes(id)) {
+    if (favoriteMovies.find(movie => movie.id === id)) {
       setAddRemBttnType('remove')
     } else {
       setAddRemBttnType('add')

@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction  } from "@reduxjs/toolkit";
 import type { RootState } from '@/redux/store'
 import localStorageDrive from "@/helpers/localStorageDriver";
+import { IFavoritesMovies } from "@/models/favoriteMovie";
 
 interface AuthSlice {
-  favoriteMovies: number[];
+  favoriteMovies: IFavoritesMovies[];
   totalFavoriteMovies: number;
 }
 
@@ -31,7 +32,7 @@ export const authSlice = createSlice({
     },
 
     removeFavoriteMovie(state, { payload }) {
-      state.favoriteMovies = state.favoriteMovies.filter((id) => id !== payload);
+      state.favoriteMovies = state.favoriteMovies.filter((movie) => movie.id !== payload);
       state.totalFavoriteMovies = state.favoriteMovies.length;
 
       localStorageDrive.setValue('userData', {
