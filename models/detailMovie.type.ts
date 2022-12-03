@@ -49,6 +49,7 @@ export interface IDetailAPI {
 }
 
 export interface IDetailAPP {
+  id: number;
   title: string;
   genres: string[];
   overview: string;
@@ -61,6 +62,7 @@ export interface IDetailAPP {
 }
 
 export const detailMovieEmpty: IDetailAPP = {
+  id: 0,
   title: '',
   genres: [],
   overview: '',

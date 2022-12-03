@@ -19,12 +19,12 @@ export interface IMovieCard {
 }
 
 const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, voteAverage }) => {
-  const favoriteMovies = useAppSelector(state => state.auth.favoriteMovies)
-  const dispatch = useAppDispatch()
   const [validMovie, setValidMovie] = useState<boolean>(false);
   const [imageLoading, setImageLoading] = useState<boolean>(true);
   const [cardHeight, setCardHeight ] = useState<number>(307.04);
   const [addRemBttnType, setAddRemBttnType] = useState<'add'|'remove'>('add');
+  const favoriteMovies = useAppSelector(state => state.auth.favoriteMovies)
+  const dispatch = useAppDispatch()
   const cardDOM = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -97,7 +97,11 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
           onLoadingComplete={() => setImageLoading(false)}
           onClick={clickImageHandler}
         />
-        <AddRemButton className={styles['add-rem-button']} type={addRemBttnType} onClick={addRemButtonClickHandler} />
+        <AddRemButton 
+          className={styles['add-rem-button']} 
+          type={addRemBttnType} 
+          onClick={addRemButtonClickHandler} 
+        />
       </article>
     </CSSTransition>
   );

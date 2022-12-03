@@ -27,6 +27,7 @@ export const moviesAdapter: (datas: IMoviesAPI) => IMoviesAPP = ({
 };
 
 export const detailMovieAdapter: (data: IDetailAPI) => IDetailAPP = ({
+  id,
   title,
   genres,
   overview,
@@ -40,6 +41,7 @@ export const detailMovieAdapter: (data: IDetailAPI) => IDetailAPP = ({
 }) => {
   const posterImage = poster_path ? `${imageBaseUrl}/${imageSize}${poster_path}`: null;
   return {
+    id,
     title,
     genres: genres.map(({ name }) => name),
     overview,

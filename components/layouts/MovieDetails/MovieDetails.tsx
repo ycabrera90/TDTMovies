@@ -9,6 +9,8 @@ import { FC, useEffect, useState } from "react";
 import InfoData from "../InfoData/InfoData";
 import { CSSTransition } from "react-transition-group";
 import styles from "./MovieDetails.module.scss";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { authActions } from "@/redux/slices/authSlice";
 
 export interface IMovieDetails {
   className?: string;
@@ -18,9 +20,13 @@ export interface IMovieDetails {
 const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
   const [imageLoading, setImageLoading] = useState<boolean>(true);
   const [firstMount, setFirstMount] = useState<boolean>(true);
+  const [addRemBttnType, setAddRemBttnType] = useState<'add'|'remove'>('add');
   const router = useRouter();
+  const favoriteMovies = useAppSelector(state => state.auth.favoriteMovies)
+  const dispatch = useAppDispatch()
   
   const {
+    id,
     title,
     posterImage,
     budget,
@@ -32,9 +38,27 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
     voteAverage,
   } = details;
 
+  const addRemButtonClickHandler = (action: "add" | "remove") => {
+    if (action === 'add') {
+      dispatch(authActions.addFavoriteMovie(id))
+    }
+    
+    if (action === 'remove') {
+      dispatch(authActions.removeFavoriteMovie(id))
+    }
+  }
+
   useEffect(() => {
     setFirstMount(false)
   }, []);
+
+  useEffect(() => {
+    if(favoriteMovies.includes(id)) {
+      setAddRemBttnType('remove')
+    } else {
+      setAddRemBttnType('add')
+    }
+  }, [favoriteMovies])
   
   return (
     <CSSTransition
@@ -67,8 +91,9 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
             <h1 className={styles.title}>
               {title}
               <AddRemButton
-                type="remove"
                 className={styles['add-remove-button']}
+                type={addRemBttnType} 
+                onClick={addRemButtonClickHandler} 
               />
             </h1>
             <CloseButton
