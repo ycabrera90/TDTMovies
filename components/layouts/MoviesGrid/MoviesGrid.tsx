@@ -14,7 +14,7 @@ const MoviesGrid: FC<IMoviesGrid> = ({movies}) => {
       {movies.map(({id, title, overview, posterImage, voteAverage}, index) => {
         return(
         <MovieCard
-          key={index}
+          key={index + id}
           id={id}
           title={title}
           imageUrl={posterImage}

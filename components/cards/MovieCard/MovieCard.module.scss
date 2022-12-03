@@ -5,11 +5,16 @@
     position: relative; // only for Image component of next/image
     width: 15.25rem;
     height: 19.19rem;
-    transition: opacity 0.5s ease-in-out;
     opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 
     &.entered {
         opacity: 1;
+        transform: scale(1);
+    }
+    &.exiting {
+        transform: scale(0);
     }
 
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));

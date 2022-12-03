@@ -20,6 +20,7 @@ export interface IMovieCard {
 const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, voteAverage }) => {
   const [validMovie, setValidMovie] = useState<boolean>(false);
   const [imageLoading, setImageLoading] = useState<boolean>(true);
+  const [isCardRemoved, setIsCardRemoved] = useState<boolean>(false);
   const [cardHeight, setCardHeight ] = useState<number>(307.04);
   const [addRemBttnType, setAddRemBttnType] = useState<'add'|'remove'>('add');
   const favoriteMovies = useAppSelector(state => state.auth.favoriteMovies)
@@ -31,9 +32,11 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
     if (action === 'add') {
       dispatch(authActions.addFavoriteMovie({id, title, overview, posterImage: imageUrl, voteAverage}))
     }
-    
     if (action === 'remove') {
-      dispatch(authActions.removeFavoriteMovie(id))
+      setIsCardRemoved(true)
+      setTimeout(() => {
+        dispatch(authActions.removeFavoriteMovie(id))
+      }, 500);
     }
   }
   
@@ -42,8 +45,8 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
   }
   
   useEffect(() => {
-      const invalid = title && overview && imageUrl && voteAverage;
-      setValidMovie(!!invalid)
+      const movieValidation = title && overview && imageUrl && voteAverage;
+      setValidMovie(!!movieValidation)
   }, []);
 
   useEffect(() => {
@@ -66,11 +69,15 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
 
   return (
     <CSSTransition
-      in={validMovie}
-      timeout={1}
+      in={validMovie && !isCardRemoved}
+      timeout={500}
       mountOnEnter
       unmountOnExit
-      classNames={{ enterDone: styles.entered }}
+      classNames={{
+        enterActive: styles.entered,
+        enterDone: styles.entered,
+        exitActive: styles.exiting,
+      }}
     >
       <article
         className={[styles.container, className ? className : ''].join(' ')}
