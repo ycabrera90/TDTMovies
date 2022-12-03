@@ -16,6 +16,10 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setAuth: (state, { payload }) => {
+      return payload;
+    },
+
     addFavoriteMovie(state, { payload }) {
       state.favoriteMovies.push(payload);
       state.totalFavoriteMovies = state.favoriteMovies.length;

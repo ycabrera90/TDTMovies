@@ -1,4 +1,3 @@
-// v1.0.4
 import { FC, MouseEventHandler } from "react";
 import styles from "./FavoritesButton.module.scss";
 

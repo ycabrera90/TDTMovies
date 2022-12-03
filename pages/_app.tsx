@@ -1,8 +1,10 @@
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
-import { ReactElement, ReactNode, useEffect } from "react";
+import { FC, ReactElement, ReactNode, useEffect } from "react";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
+import { useAppDispatch } from "@/redux/hooks";
+import { authActions } from "@/redux/slices/authSlice";
 import localStorageDrive from "@/helpers/localStorageDriver";
 import "@/styles/global.scss";
 
@@ -12,19 +14,21 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type AppPropsWithLayout = AppProps & { Component: NextPageWithLayout };
 
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page);
-  
+const CustomProvider: FC<{children : ReactNode}> = ({ children }) => {
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    // console.log(localStorage)
-    // console.log('sessionStorage');
-    // const localStorageData = localStorageDrive.getValue("userData");
-    // console.log(localStorageData);
+    dispatch(authActions.setAuth(localStorageDrive.getValue("userData")));
   }, []);
 
+  return <>{children}</>;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <Provider store={store}>
-      {getLayout(<Component {...pageProps} />)}
+      <CustomProvider>{getLayout(<Component {...pageProps} />)}</CustomProvider>
     </Provider>
   );
 }
