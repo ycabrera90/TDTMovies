@@ -1,11 +1,13 @@
-// v1.0.4
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
 import CSSTransition from "react-transition-group/CSSTransition";
-import styles from "./MovieCard.module.scss";
 import { Skeleton } from "antd";
 import { useRouter } from "next/router";
+import styles from "./MovieCard.module.scss";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { authActions } from "@/redux/slices/authSlice";
+
 
 export interface IMovieCard {
   className?: string;
@@ -17,11 +19,28 @@ export interface IMovieCard {
 }
 
 const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, voteAverage }) => {
+  const favoriteMovies = useAppSelector(state => state.auth.favoriteMovies)
+  const dispatch = useAppDispatch()
   const [validMovie, setValidMovie] = useState<boolean>(false);
   const [imageLoading, setImageLoading] = useState<boolean>(true);
   const [cardHeight, setCardHeight ] = useState<number>(307.04);
+  const [addRemBttnType, setAddRemBttnType] = useState<'add'|'remove'>('add');
   const cardDOM = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  const addRemButtonClickHandler = (action: "add" | "remove") => {
+    if (action === 'add') {
+      dispatch(authActions.addFavoriteMovie(id))
+    }
+    
+    if (action === 'remove') {
+      dispatch(authActions.removeFavoriteMovie(id))
+    }
+  }
+  
+  const clickImageHandler = () => {
+    router.push(`/details/${id}`);
+  }
   
   useEffect(() => {
       const invalid = title && overview && imageUrl && voteAverage;
@@ -38,10 +57,15 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
     }
   }, [validMovie]);
 
-  const clickImageHandler = () => {
-    router.push(`/details/${id}`);
-  }
+  useEffect(() => {
+    if(favoriteMovies.includes(id)) {
+      setAddRemBttnType('remove')
+    } else {
+      setAddRemBttnType('add')
+    }
+  }, [favoriteMovies])
   
+
   return (
     <CSSTransition
       in={validMovie}
@@ -73,7 +97,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
           onLoadingComplete={() => setImageLoading(false)}
           onClick={clickImageHandler}
         />
-        <AddRemButton className={styles['add-rem-button']} type="add" />
+        <AddRemButton className={styles['add-rem-button']} type={addRemBttnType} onClick={addRemButtonClickHandler} />
       </article>
     </CSSTransition>
   );

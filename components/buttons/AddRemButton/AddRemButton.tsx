@@ -4,24 +4,30 @@ import styles from "./AddRemButton.module.scss";
 
 export interface IAddRemButton {
   className?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: (type: "add" | "remove" ) => void;
   type: "add" | "remove";
 }
 
 const AddRemButton: FC<IAddRemButton> = ({ className, onClick, type }) => {
+
+  const onClickHandler: MouseEventHandler<HTMLButtonElement> = () => {
+    if (onClick) {
+      onClick(type);
+    }
+  }
 
   return (
     <>
       {type === 'remove' && (
         <MinusCircleOutlined
           className={[styles.icon, className ? className : ''].join(' ')}
-          onClick={onClick}
+          onClick={onClickHandler}
         />
       )}
       {type === 'add' && (
         <PlusCircleOutlined
           className={[styles.icon, className ? className : ''].join(' ')}
-          onClick={onClick}
+          onClick={onClickHandler}
         />
       )}
     </>

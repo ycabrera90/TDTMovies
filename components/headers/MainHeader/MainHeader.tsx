@@ -1,17 +1,19 @@
+import { useRouter } from "next/router";
 import { FC } from "react";
+import useDOM from "@/hooks/useDOM";
+import TDTIcon from "@/components/icons/TDTIcon/TDTIcon";
 import SearchForm from "@/components/forms/SearchForm/SearchForm";
 import FavoritesButton from "@/components/buttons/FavoritesButton/FavoritesButton";
-import useDOM from "@/hooks/useDOM";
-import styles from "./MainHeader.module.scss";
-import TDTIcon from "@/components/icons/TDTIcon/TDTIcon";
-import { useRouter } from "next/router";
 import breakPoints from '@/styles/breakpoints.module.scss';
+import styles from "./MainHeader.module.scss";
+import { useAppSelector } from "@/redux/hooks";
 
 export interface IMainHeader {
   className?: string;
 }
 
 const MainHeader: FC<IMainHeader> = ({ className }) => {
+  const totalFavoriteMovies = useAppSelector((state)=> state.auth.totalFavoriteMovies);
   const router = useRouter();
   const { screen } = useDOM("rem");
 
@@ -23,7 +25,7 @@ const MainHeader: FC<IMainHeader> = ({ className }) => {
       {largeHeader && (
         <>
           <SearchForm />
-          <FavoritesButton />
+          <FavoritesButton amount={totalFavoriteMovies} />
         </>
       )}
     </header>
