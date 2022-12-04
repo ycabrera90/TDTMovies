@@ -20,7 +20,7 @@ export interface IMovieCard {
 const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, voteAverage }) => {
   const [validMovie, setValidMovie] = useState<boolean>(false);
   const [imageLoading, setImageLoading] = useState<boolean>(true);
-  const [isCardRemoved, setIsCardRemoved] = useState<boolean>(false);
+  const [isCardRemoved, setIsCardRemoved] = useState<boolean>(false);   // <-- only for add a transition when the card is removed
   const [cardHeight, setCardHeight ] = useState<number>(307.04);
   const [addRemBttnType, setAddRemBttnType] = useState<'add'|'remove'>('add');
   const favoriteMovies = useAppSelector(state => state.auth.favoriteMovies)
@@ -32,6 +32,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
     if (action === 'add') {
       dispatch(authActions.addFavoriteMovie({id, title, overview, posterImage: imageUrl, voteAverage}))
     }
+
     if (action === 'remove') {
       // this condition is for add a transition when remove a card of favorites
       if(router.pathname === '/favorites') {
