@@ -33,10 +33,15 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
       dispatch(authActions.addFavoriteMovie({id, title, overview, posterImage: imageUrl, voteAverage}))
     }
     if (action === 'remove') {
-      setIsCardRemoved(true)
-      setTimeout(() => {
+      // this condition is for add a transition when remove a card of favorites
+      if(router.pathname === '/favorites') {
+        setIsCardRemoved(true)
+        setTimeout(() => {
+          dispatch(authActions.removeFavoriteMovie(id))
+        }, 250);
+      } else {
         dispatch(authActions.removeFavoriteMovie(id))
-      }, 500);
+      }
     }
   }
   
@@ -70,7 +75,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
   return (
     <CSSTransition
       in={validMovie && !isCardRemoved}
-      timeout={500}
+      timeout={250}
       mountOnEnter
       unmountOnExit
       classNames={{

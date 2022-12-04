@@ -7,7 +7,7 @@
     height: 19.19rem;
     opacity: 0;
     transform: scale(0);
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 
     &.entered {
         opacity: 1;
