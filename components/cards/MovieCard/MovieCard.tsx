@@ -1,11 +1,12 @@
-// v1.0.4
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
 import CSSTransition from "react-transition-group/CSSTransition";
-import styles from "./MovieCard.module.scss";
 import { Skeleton } from "antd";
 import { useRouter } from "next/router";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { authActions } from "@/redux/slices/authSlice";
+import styles from "./MovieCard.module.scss";
 
 export interface IMovieCard {
   className?: string;
@@ -19,13 +20,39 @@ export interface IMovieCard {
 const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, voteAverage }) => {
   const [validMovie, setValidMovie] = useState<boolean>(false);
   const [imageLoading, setImageLoading] = useState<boolean>(true);
+  const [isCardRemoved, setIsCardRemoved] = useState<boolean>(false);   // <-- only for add a transition when the card is removed
   const [cardHeight, setCardHeight ] = useState<number>(307.04);
+  const [addRemBttnType, setAddRemBttnType] = useState<'add'|'remove'>('add');
+  const favoriteMovies = useAppSelector(state => state.auth.favoriteMovies)
+  const dispatch = useAppDispatch()
   const cardDOM = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  const addRemButtonClickHandler = (action: "add" | "remove") => {
+    if (action === 'add') {
+      dispatch(authActions.addFavoriteMovie({id, title, overview, posterImage: imageUrl, voteAverage}))
+    }
+
+    if (action === 'remove') {
+      // this condition is for add a transition when remove a card of favorites
+      if(router.pathname === '/favorites') {
+        setIsCardRemoved(true)
+        setTimeout(() => {
+          dispatch(authActions.removeFavoriteMovie(id))
+        }, 250);
+      } else {
+        dispatch(authActions.removeFavoriteMovie(id))
+      }
+    }
+  }
+  
+  const clickImageHandler = () => {
+    router.push(`/details/${id}`);
+  }
   
   useEffect(() => {
-      const invalid = title && overview && imageUrl && voteAverage;
-      setValidMovie(!!invalid)
+      const movieValidation = title && overview && imageUrl && voteAverage;
+      setValidMovie(!!movieValidation)
   }, []);
 
   useEffect(() => {
@@ -38,17 +65,25 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
     }
   }, [validMovie]);
 
-  const clickImageHandler = () => {
-    router.push(`/details/${id}`);
-  }
-  
+  useEffect(() => {
+    if (favoriteMovies.find(movie => movie.id === id)) {
+      setAddRemBttnType('remove')
+    } else {
+      setAddRemBttnType('add')
+    }
+  }, [favoriteMovies])
+
   return (
     <CSSTransition
-      in={validMovie}
-      timeout={1}
+      in={validMovie && !isCardRemoved}
+      timeout={250}
       mountOnEnter
       unmountOnExit
-      classNames={{ enterDone: styles.entered }}
+      classNames={{
+        enterActive: styles.entered,
+        enterDone: styles.entered,
+        exitActive: styles.exiting,
+      }}
     >
       <article
         className={[styles.container, className ? className : ''].join(' ')}
@@ -73,7 +108,11 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
           onLoadingComplete={() => setImageLoading(false)}
           onClick={clickImageHandler}
         />
-        <AddRemButton className={styles['add-rem-button']} type="add" />
+        <AddRemButton 
+          className={styles['add-rem-button']} 
+          type={addRemBttnType} 
+          onClick={addRemButtonClickHandler} 
+        />
       </article>
     </CSSTransition>
   );

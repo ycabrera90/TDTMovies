@@ -1,12 +1,14 @@
-// v1.0.4
-import { FC } from "react";
+import { useRouter } from "next/router";
+import { FC, useState } from "react";
+import useDOM from "@/hooks/useDOM";
+import { useAppSelector } from "@/redux/hooks";
+import TDTIcon from "@/components/icons/TDTIcon/TDTIcon";
 import SearchForm from "@/components/forms/SearchForm/SearchForm";
 import FavoritesButton from "@/components/buttons/FavoritesButton/FavoritesButton";
-import useDOM from "@/hooks/useDOM";
+import ToggleMenu from "@/components/layouts/ToggleMenu/ToggleMenu";
+import ToggleButton from "@/components/buttons/ToggleButton/ToggleButton";
 import breakPoints from '@/styles/breakpoints.module.scss';
 import styles from "./MainHeader.module.scss";
-import TDTIcon from "@/components/icons/TDTIcon/TDTIcon";
-import { useRouter } from "next/router";
 
 export interface IMainHeader {
   className?: string;
@@ -15,21 +17,58 @@ export interface IMainHeader {
 const MainHeader: FC<IMainHeader> = ({ className }) => {
   const router = useRouter();
   const { screen } = useDOM("rem");
+  const totalFavoriteMovies = useAppSelector((state)=> state.auth.totalFavoriteMovies);
+  const [isMenuExpanded,setIsMenuExpanded ] = useState<boolean>(false);
 
-  const largeHeader = screen.size.width > +breakPoints.smSreens;
+  const toggleButtonClickHandler = () => {
+    setIsMenuExpanded(!isMenuExpanded);
+  }
+
+  const favoriteButtonClickHandler = () => {
+    router.push('/favorites');
+    setIsMenuExpanded(false);
+  }
+
+  const logoClickHandler = () => {
+    router.push('/home');
+    setIsMenuExpanded(false);
+  }
+
+  const largeHeader = screen.size.width > +breakPoints.smSreens; // <-- only for large screens
 
   return (
     <header
-      className={[styles.container, className ? className : ""].join(" ")}
+      className={[styles.container, className ? className : ''].join(' ')}
     >
-      <TDTIcon onClick={() => router.push('/home')}/>
-      {largeHeader && (
+      <TDTIcon onClick={logoClickHandler}/>
+
+      {largeHeader ? (
         <>
           <SearchForm />
-          <FavoritesButton />
+          <FavoritesButton
+            amount={totalFavoriteMovies}
+            onClick={favoriteButtonClickHandler}
+          />
+        </>
+      ) : (
+        <>
+          <ToggleButton
+            clicked={isMenuExpanded}
+            onClick={toggleButtonClickHandler}
+          />
+          <ToggleMenu 
+            expanded={isMenuExpanded} 
+            onBackdropClick={()=> setIsMenuExpanded(false)}
+          >
+            <SearchForm onSubmitted={()=>setIsMenuExpanded(false)}/>
+            <FavoritesButton
+              amount={totalFavoriteMovies}
+              onClick={favoriteButtonClickHandler}
+            />
+          </ToggleMenu>
+
         </>
       )}
-      
     </header>
   );
 };

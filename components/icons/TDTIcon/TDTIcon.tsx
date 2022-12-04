@@ -1,6 +1,7 @@
 // v1.0.4
+import Image from "next/image";
 import { FC, MouseEventHandler } from "react";
-import TDTLogo from "@/public/tdtLogo.svg";
+import tdtLogo from "@/public/tdtLogo.png";
 import styles from "./TDTIcon.module.scss";
 
 export interface ITDTIcon {
@@ -10,9 +11,18 @@ export interface ITDTIcon {
 
 const TDTIcon: FC<ITDTIcon> = ({ className, onClick }) => {
   return (
-    <i className={[styles.container, className ? className : ''].join(' ')} onClick={onClick}>
-      <TDTLogo />
-    </i>
+    <div className={[styles.container, className ? className : ''].join(' ')} >
+      <Image
+          onClick={onClick}
+          alt='TDT Logo'
+          src={tdtLogo}
+          fill                                            
+          style={{ objectFit: "cover" }}
+          sizes="(max-width: 768px)  100vw,                
+                 (max-width: 1200px)  50vw,
+                                      33vw"
+      />
+    </div>
   );
 };
 

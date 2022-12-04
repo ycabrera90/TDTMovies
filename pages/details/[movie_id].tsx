@@ -8,9 +8,9 @@ import LoadingModal from '@/components/modals/LoadingModal/LoadingModal';
 import MovieDetails from '@/components/layouts/MovieDetails/MovieDetails';
 import { detailMovieEmpty, IDetailAPP } from '@/models/detailMovie.type';
 
-export interface ISearchPage {}
+export interface IDetailPage {}
 
-const SearchPage: NextPageWithLayout<ISearchPage> = () => {
+const DetailPage: NextPageWithLayout<IDetailPage> = () => {
   const router = useRouter();
   const movieId = router.query.movie_id;
   const [movieDetails, setMovieDetails] = useState<IDetailAPP>(detailMovieEmpty);
@@ -44,8 +44,8 @@ const SearchPage: NextPageWithLayout<ISearchPage> = () => {
   );
 };
 
-SearchPage.getLayout = function getLayout(page: ReactElement) {
+DetailPage.getLayout = function getLayout(page: ReactElement) {
   return <MainLayout scroll={{ trigger: 60 }}>{page}</MainLayout>; 
 };
 
-export default SearchPage;
+export default DetailPage;

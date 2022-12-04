@@ -1,0 +1,22 @@
+@import "styles/fonts.module.scss";
+.container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #19c4a8;
+    font-family: $font1;
+    text-shadow: 1px 1px 1px #00000019;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    font-size: 1.5rem;
+    transform: scale(0.7);
+
+    @media(min-width: 40rem) {
+        transform: scale(1);
+    }
+
+    &.entered {
+        opacity: 0.9;
+    }
+}

@@ -1,20 +1,40 @@
-// v1.0.4
-import { FC, MouseEventHandler } from "react";
+import { FC, MouseEventHandler, useEffect, useState } from "react";
 import styles from "./FavoritesButton.module.scss";
 
 export interface IFavoritesButton {
   className?: string;
-  amount?: number;
+  amount: number;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
+let firstMount: boolean;
+
 const FavoritesButton: FC<IFavoritesButton> = ({ className, amount, onClick }) => {
+  const [burstEffect, setBurstEffect] = useState<boolean>(false);
+
+  useEffect(() => {
+    firstMount = true;
+  }, []);
+
+  useEffect(() => {
+    if (firstMount) {
+      firstMount = false;
+    }
+    else{
+      setBurstEffect(true);
+      setTimeout(() => {
+        setBurstEffect(false);
+      }, 100)
+    }
+  }, [amount]);
+  
   return (
-    <button className={[styles.container, className ? className : ''].join(' ')}
-    onClick={onClick}
+    <button 
+      className={[styles.container, className ? className : '', burstEffect ? styles.burst: ''].join(' ')}
+      onClick={onClick}
     >
       <span className={styles.text}>Ver Favoritos</span>
-      {amount && <span className={styles.badge}>{amount}</span>}
+      <span className={styles.badge}>{amount}</span>
     </button>
   );
 };

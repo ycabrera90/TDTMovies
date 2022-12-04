@@ -22,6 +22,7 @@ const urlDevPaths = [
 
   "/dev/modals/not_found_movie_modal",
   "/dev/modals/loading_modal",
+  "/dev/modals/empty_favorites",
 
 ];
 

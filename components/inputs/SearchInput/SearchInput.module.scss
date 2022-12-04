@@ -1,8 +1,9 @@
 @import "styles/colors.module.scss";
 @import "styles/fonts.module.scss";
+@import "styles/breakpoints.module.scss";
 
 .container {
-    width: 20.65rem;
+    width: 100%;
     background: $input_bg;
     border: 1px solid $input_border-color;
     border-radius: 4px;
@@ -10,8 +11,12 @@
     font-family: $font1;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 25.14px;
+    line-height: 1.375rem;
     color: $input_text-color;
+
+    @media(min-width: $sm-screens) {
+        width: 25.65rem;
+    }
 
     &:focus-visible {
         outline: none;
@@ -24,4 +29,5 @@
         line-height: 22px;
         color: $input_placeholder-color;
     }
+    
 }

@@ -1,6 +1,7 @@
 import MovieDetails from "@/components/layouts/MovieDetails/MovieDetails";
 
 export const dummyMovieDetails = {
+  id: 1,
   title: 'Black Adam',
   genres: [
     'Acción',
@@ -28,7 +29,6 @@ export const dummyMovieDetails = {
   posterImage:
     'https://image.tmdb.org/t/p/w400//7MwrqCY0AZw3ZWp1F8BWsYLRWUu.jpg',
 };
-
 
 export default function Home() {
   const backgroundColor = '#F5F5F5';

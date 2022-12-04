@@ -1,4 +1,3 @@
-// v1.0.4
 import { BaseSyntheticEvent, FC, ReactNode, createContext, useState } from "react";
 import MainHeader from "@/components/headers/MainHeader/MainHeader";
 import styles from "./MainLayout.module.scss";
