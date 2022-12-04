@@ -1,0 +1,27 @@
+.container {
+    position: absolute;
+    inset: 4rem 0 0 0;
+    padding: 0.1rem;
+    background-color: #000000d4;
+    z-index: 1;
+
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+
+    &.entered {
+        opacity: 1;
+    }
+    &.exiting {
+        opacity: 0;
+    }
+
+    .menu {
+        position: relative;
+        margin: 1rem 0.5rem;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        z-index: 1;
+    }
+}

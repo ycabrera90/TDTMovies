@@ -7,14 +7,25 @@ export interface IFavoritesButton {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
+let firstMount: boolean;
+
 const FavoritesButton: FC<IFavoritesButton> = ({ className, amount, onClick }) => {
   const [burstEffect, setBurstEffect] = useState<boolean>(false);
 
   useEffect(() => {
+    firstMount = true;
+  }, []);
+
+  useEffect(() => {
+    if (firstMount) {
+      firstMount = false;
+    }
+    else{
       setBurstEffect(true);
       setTimeout(() => {
         setBurstEffect(false);
-      }, 100);
+      }, 100)
+    }
   }, [amount]);
   
   return (

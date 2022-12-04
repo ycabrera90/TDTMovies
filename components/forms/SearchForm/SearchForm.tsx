@@ -1,4 +1,3 @@
-// v1.0.4
 import { useRouter } from "next/router";
 import { BaseSyntheticEvent, FC, useEffect, useState } from "react";
 import SearchInput from "@/components/inputs/SearchInput/SearchInput";
@@ -7,9 +6,10 @@ import styles from "./SearchForm.module.scss";
 
 export interface IBaseTemplate {
   className?: string;
+  onSubmitted?: () => void;
 }
 
-const SearchForm: FC<IBaseTemplate> = ({ className }) => {
+const SearchForm: FC<IBaseTemplate> = ({ className, onSubmitted }) => {
   const [queryText, setQueryText] = useState<string>('');
   const router = useRouter();
 
@@ -19,6 +19,11 @@ const SearchForm: FC<IBaseTemplate> = ({ className }) => {
 
   const submitHandler = (ev: BaseSyntheticEvent) => {
     ev.preventDefault();
+
+    if (onSubmitted) {
+      onSubmitted();
+    }
+
     if (queryText) {
       router.push(`/home/${encodeURIComponent(queryText.trim())}`);
     } else {
@@ -34,7 +39,10 @@ const SearchForm: FC<IBaseTemplate> = ({ className }) => {
   }, [router.pathname]);
 
   return (
-    <form className={[styles.container, className ? className : ''].join(' ')} onSubmit={submitHandler} >
+    <form 
+      className={[styles.container, className ? className : ''].join(' ')} 
+      onSubmit={submitHandler}
+    >
       <SearchInput onChange={onChangeInputHandler} value={queryText}/>
       <SearchButton onClick={submitHandler} />
     </form>
