@@ -11,7 +11,6 @@ export interface IToggleMenu {
 }
 
 const ToggleMenu: FC<IToggleMenu> = ({ className, expanded, onBackdropClick, children }) => {
-  
   const clickHandler = (e: BaseSyntheticEvent) => {
     if(e.target.classList.contains(styles.container)){
       onBackdropClick && onBackdropClick();
@@ -30,12 +29,12 @@ const ToggleMenu: FC<IToggleMenu> = ({ className, expanded, onBackdropClick, chi
         exitActive: styles.exiting,
       }}
     >
-        <div
-          className={[styles.container, className ? className : ''].join(' ')}
-          onClick={clickHandler}
-        >
-          <section className={styles.menu}>{children}</section>
-        </div>
+      <div
+        className={[styles.container, className ? className : ''].join(' ')}
+        onClick={clickHandler}
+      >
+        <section className={styles.menu}>{children}</section>
+      </div>
     </CSSTransition>
   );
 };

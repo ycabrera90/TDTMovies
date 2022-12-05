@@ -4,9 +4,9 @@ import { NextPageWithLayout } from '@/pages/_app';
 import MainLayout from '@/components/layouts/MainLayout/MainLayout';
 import movieDbService from '@/services/movieDb.service';
 import NotFoundMovieModal from '@/components/modals/NotFoundMovieModal/NotFoundMovieModal';
+import { detailMovieEmpty, IDetailAPP } from '@/models/detailMovie.type';
 import LoadingModal from '@/components/modals/LoadingModal/LoadingModal';
 import MovieDetails from '@/components/layouts/MovieDetails/MovieDetails';
-import { detailMovieEmpty, IDetailAPP } from '@/models/detailMovie.type';
 
 export interface IDetailPage {}
 

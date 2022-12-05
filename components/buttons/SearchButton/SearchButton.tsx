@@ -15,4 +15,5 @@ const SearchButton: FC<ISearchButton> = ({ className, onClick }) => {
     />
   );
 };
+
 export default SearchButton;

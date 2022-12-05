@@ -1,0 +1,21 @@
+// v1.0.4
+.container {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: #66CCCC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background-image: url("/bars.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1000;
+}
+
+.enter,
+.entered {
+    opacity: 1;
+}

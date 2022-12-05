@@ -1,6 +1,12 @@
 import { BaseSyntheticEvent, FC, ReactNode, createContext, useState } from "react";
+import MetaHeader from "@/components/headers/Meta/MetaHeader";
 import MainHeader from "@/components/headers/MainHeader/MainHeader";
 import styles from "./MainLayout.module.scss";
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+const pageTitle = "TDT Movies";
+const pageDescription = "Look at the best movies in the world";
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 export interface IMainLayout {
   className?: string;
@@ -43,6 +49,7 @@ const MainLayout: FC<IMainLayout> = ({ className, children, scroll }) => {
 
   return (
     <div className={[styles.container, className ? className : ''].join(' ')}>
+      <MetaHeader title={pageTitle} description={pageDescription} />
       <MainHeader />
       <MainLayoutContext.Provider value={{ scrollEvent: scrollEvent }}>
         <main onScroll={scrollEventHandler}>{children}</main>

@@ -34,42 +34,43 @@ const MainHeader: FC<IMainHeader> = ({ className }) => {
     setIsMenuExpanded(false);
   }
 
-  const largeHeader = screen.size.width > +breakPoints.smSreens; // <-- only for large screens
-
   return (
-    <header
-      className={[styles.container, className ? className : ''].join(' ')}
-    >
-      <TDTIcon onClick={logoClickHandler}/>
+    <>
+      {screen && screen.size.width !== null && (
+        <header
+          className={[styles.container, className ? className : ''].join(' ')}
+        >
+          <TDTIcon onClick={logoClickHandler} />
 
-      {largeHeader ? (
-        <>
-          <SearchForm />
-          <FavoritesButton
-            amount={totalFavoriteMovies}
-            onClick={favoriteButtonClickHandler}
-          />
-        </>
-      ) : (
-        <>
-          <ToggleButton
-            clicked={isMenuExpanded}
-            onClick={toggleButtonClickHandler}
-          />
-          <ToggleMenu 
-            expanded={isMenuExpanded} 
-            onBackdropClick={()=> setIsMenuExpanded(false)}
-          >
-            <SearchForm onSubmitted={()=>setIsMenuExpanded(false)}/>
-            <FavoritesButton
-              amount={totalFavoriteMovies}
-              onClick={favoriteButtonClickHandler}
-            />
-          </ToggleMenu>
-
-        </>
+          {screen.size.width > +breakPoints.smSreens ? (
+            <>
+              <SearchForm />
+              <FavoritesButton
+                amount={totalFavoriteMovies}
+                onClick={favoriteButtonClickHandler}
+              />
+            </>
+          ) : (
+            <>
+              <ToggleButton
+                clicked={isMenuExpanded}
+                onClick={toggleButtonClickHandler}
+              />
+              <ToggleMenu
+                expanded={isMenuExpanded}
+                onBackdropClick={() => setIsMenuExpanded(false)}
+              >
+                <SearchForm onSubmitted={() => setIsMenuExpanded(false)} />
+                <FavoritesButton
+                  amount={totalFavoriteMovies}
+                  onClick={favoriteButtonClickHandler}
+                />
+              </ToggleMenu>
+            </>
+          )}
+        </header>
       )}
-    </header>
+    </>
   );
 };
 

@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
-import { FC, ReactElement, ReactNode, useEffect } from "react";
+import { FC, ReactElement, ReactNode, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import { useAppDispatch } from "@/redux/hooks";
 import { authActions } from "@/redux/slices/authSlice";
 import localStorageDrive from "@/helpers/localStorageDriver";
+import LoadingApp from "@/components/modals/LoadingApp/LoadingApp";
 import "@/styles/global.scss";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -29,9 +30,14 @@ const CustomProvider: FC<{children : ReactNode}> = ({ children }) => {
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
+  const [startApp, setStartApp] = useState(false);
+
   return (
     <Provider store={store}>
-      <CustomProvider>{getLayout(<Component {...pageProps} />)}</CustomProvider>
+      <CustomProvider>
+        <LoadingApp onStart={()=>setStartApp(true)} />
+        {startApp && getLayout(<Component {...pageProps} />)}
+      </CustomProvider>
     </Provider>
   );
 }

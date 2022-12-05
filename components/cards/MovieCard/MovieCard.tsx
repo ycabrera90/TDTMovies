@@ -1,11 +1,11 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { FC, useEffect, useRef, useState } from "react";
-import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { Skeleton } from "antd";
-import { useRouter } from "next/router";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { authActions } from "@/redux/slices/authSlice";
+import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
 import styles from "./MovieCard.module.scss";
 
 export interface IMovieCard {
@@ -90,9 +90,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
         ref={cardDOM}
         style={{ height: cardHeight }}
       >
-        {imageLoading && (
-          <Skeleton.Image active={true} className={styles.skeleton} />
-        )}
+        {imageLoading && (<Skeleton.Image active={true} className={styles.skeleton} />)}
         <div className={styles['bottom-fog']} />
         <span className={styles.badge}>{voteAverage}</span>
         <h1 className={styles.title}>{title}</h1>

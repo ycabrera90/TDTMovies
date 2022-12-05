@@ -1,16 +1,15 @@
-// v1.0.4
-import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
-import CloseButton from "@/components/buttons/CloseButton/CloseButton";
-import { IDetailAPP } from "@/models/detailMovie.type";
-import { Skeleton } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
-import InfoData from "../InfoData/InfoData";
+import { Skeleton } from "antd";
 import { CSSTransition } from "react-transition-group";
-import styles from "./MovieDetails.module.scss";
+import { IDetailAPP } from "@/models/detailMovie.type";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { authActions } from "@/redux/slices/authSlice";
+import InfoData from "@/components/layouts/InfoData/InfoData";
+import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
+import CloseButton from "@/components/buttons/CloseButton/CloseButton";
+import styles from "./MovieDetails.module.scss";
 
 export interface IMovieDetails {
   className?: string;
@@ -78,7 +77,6 @@ const MovieDetails: FC<IMovieDetails> = ({ className, details }) => {
             src={`${posterImage ? posterImage : ''}`}
             fill
             sizes="50vw"
-            // style={{ objectFit: 'cover' }}
             priority
             onLoadingComplete={() => setImageLoading(false)}
           />
