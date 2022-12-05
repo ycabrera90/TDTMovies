@@ -1,6 +1,6 @@
 import { FC } from "react";
-import MovieCard from "@/components/cards/MovieCard/MovieCard";
 import { IMoviesResultsAPP } from "@/models/movies.type";
+import MovieCard from "@/components/cards/MovieCard/MovieCard";
 import styles from "./MoviesGrid.module.scss";
 
 export interface IMoviesGrid {

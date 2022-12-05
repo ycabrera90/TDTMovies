@@ -1,4 +1,3 @@
-
 import { FC } from 'react';
 import Head from "next/head";
 
@@ -6,8 +5,6 @@ export interface IMetaHeader {
   title: string;
   description: string;
 }
-
-
 
 const MetaHeader: FC<IMetaHeader> = ({ title, description }) => {
   return (
@@ -17,7 +14,5 @@ const MetaHeader: FC<IMetaHeader> = ({ title, description }) => {
     </Head>
   );
 };
-
-
 
 export default MetaHeader;

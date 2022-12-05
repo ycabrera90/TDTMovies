@@ -33,4 +33,5 @@ const AddRemButton: FC<IAddRemButton> = ({ className, onClick, type }) => {
     </>
   );
 };
+
 export default AddRemButton;

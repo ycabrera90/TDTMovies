@@ -24,13 +24,20 @@ const EmtyFavorites: FC<IEmtyFavorites> = ({ className }) => {
       unmountOnExit
       classNames={{ enterDone: styles.entered }}
     >
-      <div className={[styles.container, className ? className : ''].join(' ')}
-      onClick={() => router.push("/home")}>
+      <div
+        className={[styles.container, className ? className : ''].join(' ')}
+        onClick={() => router.push('/home')}
+      >
         <Empty
           image="/empty_favorites_img.svg"
           imageStyle={{ height: '50vh' }}
           description="No tienes favoritos"
-          style={{ color: 'inherit', fontFamily: 'inherit', fontSize: "inherit", cursor: "pointer" }}
+          style={{
+            color: 'inherit',
+            fontFamily: 'inherit',
+            fontSize: 'inherit',
+            cursor: 'pointer',
+          }}
         />
       </div>
     </CSSTransition>

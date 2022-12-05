@@ -11,13 +11,11 @@ const ToggleButton: FC<IToggleButton> = ({ className, clicked, onClick }) => {
 
   return (
     <button
-    
       className={[
         styles['toggle-button'],
         className ? className : '',
         clicked ? styles['expanded'] : '',
       ].join(' ')}
-
       onClick={onClick}
     >
       <span></span>

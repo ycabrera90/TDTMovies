@@ -1,4 +1,3 @@
-// v1.0.4
 import { Spin } from "antd";
 import { FC } from "react";
 import styles from "./LoadingModal.module.scss";
