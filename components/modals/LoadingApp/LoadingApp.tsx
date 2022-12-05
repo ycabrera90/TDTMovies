@@ -1,4 +1,3 @@
-// v1.0.4
 import { FC, useEffect, useState } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
 import styles from "./LoadingApp.module.scss";
