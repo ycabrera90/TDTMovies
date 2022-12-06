@@ -7,6 +7,7 @@ import { Skeleton } from "antd";
 import { authActions } from "@/redux/slices/authSlice";
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
 import styles from "./MovieCard.module.scss";
+import InfoFog from "@/components/layouts/InfoFog/InfoFog";
 
 export interface IMovieCard {
   className?: string;
@@ -85,33 +86,34 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
         exitActive: styles.exiting,
       }}
     >
-      <article
+      <div
         className={[styles.container, className ? className : ''].join(' ')}
-        ref={cardDOM}
         style={{ height: cardHeight }}
       >
-        {imageLoading && (<Skeleton.Image active={true} className={styles.skeleton} />)}
-        <div className={styles['bottom-fog']} />
-        <span className={styles.badge}>{voteAverage}</span>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.overview}>{overview}</p>
-        <Image
-          className={styles.image}
-          alt={title}
-          src={`${imageUrl ? imageUrl : ''}`}
-          fill
-          sizes="50vw"
-          style={{ objectFit: 'cover' }}
-          priority
-          onLoadingComplete={() => setImageLoading(false)}
-          onClick={clickImageHandler}
-        />
-        <AddRemButton 
-          className={styles['add-rem-button']} 
-          type={addRemBttnType} 
-          onClick={addRemButtonClickHandler} 
-        />
-      </article>
+        <article className={styles.card} ref={cardDOM}>
+          {imageLoading && (
+            <Skeleton.Image active={true} className={styles.skeleton} />
+          )}
+          <span className={styles.badge}>{voteAverage}</span>
+          <InfoFog title={title} overview={overview} />
+          <Image
+            className={styles.image}
+            src={`${imageUrl ? imageUrl : ''}`}
+            alt={title}
+            sizes="50vw"
+            style={{ objectFit: 'cover' }}
+            onLoadingComplete={() => setImageLoading(false)}
+            onClick={clickImageHandler}
+            fill
+            priority
+          />
+          <AddRemButton
+            className={styles['add-rem-button']}
+            type={addRemBttnType}
+            onClick={addRemButtonClickHandler}
+          />
+        </article>
+      </div>
     </CSSTransition>
   );
 };

@@ -26,6 +26,14 @@
         box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.04);
     }
 
+    &:focus{
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
     .text{
         font-weight: 600;
     }
