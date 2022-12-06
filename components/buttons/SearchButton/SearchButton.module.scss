@@ -13,9 +13,17 @@
         opacity: 0.9;
     }
 
-    &:active{
+    &:active {
         opacity: 1;
         transform: translateY(1px);
         box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.04);
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: none;
     }
 }

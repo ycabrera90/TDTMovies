@@ -7,6 +7,7 @@ import { IDetailAPP } from "@/models/detailMovie.type";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { authActions } from "@/redux/slices/authSlice";
 import InfoData from "@/components/layouts/InfoData/InfoData";
+
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
 import CloseButton from "@/components/buttons/CloseButton/CloseButton";
 import styles from "./MovieDetails.module.scss";

@@ -1,0 +1,40 @@
+@import "styles/fonts.module.scss";
+@import "styles/colors.module.scss";
+
+.bottom-fog {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    inset: 55.5% 0px 0px 0px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 49.48%);
+    z-index: 1;
+    padding: 1rem;
+
+    .title {
+        font-family: $font1;
+        font-weight: 700;
+        font-size: 1rem;
+        color: $btn_text-color;
+        margin: 0.15rem 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .overview {
+        font-family: $font1;
+        font-weight: 400;
+        font-size: 0.88rem;
+        line-height: 1.375rem;
+        color: #FFFFFF;
+        width: 87.6%;
+        margin: 0;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        padding-right: 0.2rem;
+        min-height: 4.2rem;
+    }
+}
