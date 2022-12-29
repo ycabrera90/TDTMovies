@@ -6,8 +6,8 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import { Skeleton } from "antd";
 import { authActions } from "@/redux/slices/authSlice";
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
-import styles from "./MovieCard.module.scss";
 import InfoFog from "@/components/layouts/InfoFog/InfoFog";
+import styles from "./MovieCard.module.scss";
 
 export interface IMovieCard {
   className?: string;
