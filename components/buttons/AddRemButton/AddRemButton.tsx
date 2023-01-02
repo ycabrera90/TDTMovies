@@ -22,12 +22,14 @@ const AddRemButton: FC<IAddRemButton> = ({ className, onClick, type }) => {
         <MinusCircleOutlined
           className={[styles.icon, className ? className : ''].join(' ')}
           onClick={onClickHandler}
+          data-testid="remove-button"
         />
       )}
       {type === 'add' && (
         <PlusCircleOutlined
           className={[styles.icon, className ? className : ''].join(' ')}
           onClick={onClickHandler}
+          data-testid="add-button"
         />
       )}
     </>
