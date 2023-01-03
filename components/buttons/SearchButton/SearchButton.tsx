@@ -12,6 +12,7 @@ const SearchButton: FC<ISearchButton> = ({ className, onClick }) => {
     <SearchOutlined
       className={[styles.container, className ? className : ''].join(' ')}
       onClick={onClick}
+      data-testid="SearchButton"
     />
   );
 };
