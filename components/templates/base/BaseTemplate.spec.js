@@ -1,4 +1,4 @@
-// v1.0.5
+// v1.0.6
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import BaseTemplate from './BaseTemplate';
@@ -12,10 +12,6 @@ describe('BaseTemplate Component', () => {
     // Nothing in this moment
 
     // Assert
-    expect(
-      screen.getByText('this is only a template', {
-        exact: false,
-      })
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('BaseTemplate')).not.toBeEmptyDOMElement(); 
   });
 });

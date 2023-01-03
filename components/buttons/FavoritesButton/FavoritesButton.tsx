@@ -32,6 +32,7 @@ const FavoritesButton: FC<IFavoritesButton> = ({ className, amount, onClick }) =
     <button 
       className={[styles.container, className ? className : '', burstEffect ? styles.burst: ''].join(' ')}
       onClick={onClick}
+      data-testid="FavoritesButton"
     >
       <span className={styles.text}>Ver Favoritos</span>
       <span className={styles.badge}>{amount}</span>
