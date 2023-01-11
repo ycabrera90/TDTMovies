@@ -42,6 +42,7 @@ const SearchForm: FC<IBaseTemplate> = ({ className, onSubmitted }) => {
     <form 
       className={[styles.container, className ? className : ''].join(' ')} 
       onSubmit={submitHandler}
+      data-testid="SearchForm"
     >
       <SearchInput onChange={onChangeInputHandler} value={queryText}/>
       <SearchButton onClick={submitHandler} />

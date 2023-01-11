@@ -1,6 +1,6 @@
 import { mainCardData } from '@/mocks/mainCardData.mock';
 import { store } from '@/redux/store';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import MovieCard from './MovieCard';
 import singletonRouter from 'next/router';
@@ -88,7 +88,7 @@ describe('MovieCard', () => {
           imageUrl={imageUrl}
           overview={overview}
           title={title}
-          voteAverage={''}
+          voteAverage={0}
         />
       </Provider>
     );
@@ -169,8 +169,9 @@ describe('MovieCard', () => {
         />
       </Provider>
     );
-
-    getByTestId('add-button').click();
+    act(() => {
+      getByTestId('add-button').click();
+    });
     expect(store.getState().auth.favoriteMovies[0]).toHaveProperty('id', id);
     expect(store.getState().auth.favoriteMovies[0]).toHaveProperty(
       'title',
@@ -190,7 +191,9 @@ describe('MovieCard', () => {
     );
 
     const removeButton = await findByTestId('remove-button');
-    removeButton.click();
+    act(() => {
+      removeButton.click();
+    });
     expect(store.getState().auth.favoriteMovies).toHaveLength(0);
   });
 
@@ -206,7 +209,9 @@ describe('MovieCard', () => {
         />
       </Provider>
     );
-    getByTestId('MovieCardImage').click();
+    act(() => {
+      getByTestId('MovieCardImage').click();
+    });
     expect(singletonRouter.pathname).toBe(`/details/${id}`);
   });
 
@@ -240,15 +245,17 @@ describe('MovieCard', () => {
       </Provider>
     );
 
-    store.dispatch(
-      authActions.addFavoriteMovie({
-        id,
-        title,
-        overview,
-        posterImage: imageUrl,
-        voteAverage,
-      })
-    );
+    act(() => {
+      store.dispatch(
+        authActions.addFavoriteMovie({
+          id,
+          title,
+          overview,
+          posterImage: imageUrl,
+          voteAverage,
+        })
+      );
+    });
 
     const element = await findByTestId('remove-button');
     expect(element).toBeInTheDocument();
