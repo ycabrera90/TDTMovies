@@ -14,6 +14,7 @@ const SearchInput: FC<ISearchInput> = ({ className, value, onChange }) => {
       placeholder="Buscar.."
       value={value}
       onChange={onChange}
+      data-testid="SearchInput"
     />
   );
 };
