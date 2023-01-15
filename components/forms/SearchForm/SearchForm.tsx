@@ -10,7 +10,7 @@ export interface IBaseTemplate {
 }
 
 const SearchForm: FC<IBaseTemplate> = ({ className, onSubmitted }) => {
-  const [queryText, setQueryText] = useState<string>('');
+  const [queryText, setQueryText] = useState('');
   const router = useRouter();
 
   const onChangeInputHandler = (ev: BaseSyntheticEvent) => {
@@ -39,12 +39,12 @@ const SearchForm: FC<IBaseTemplate> = ({ className, onSubmitted }) => {
   }, [router.pathname]);
 
   return (
-    <form 
-      className={[styles.container, className ? className : ''].join(' ')} 
+    <form
+      className={[styles.container, className ? className : ''].join(' ')}
       onSubmit={submitHandler}
       data-testid="SearchForm"
     >
-      <SearchInput onChange={onChangeInputHandler} value={queryText}/>
+      <SearchInput onChange={onChangeInputHandler} value={queryText} />
       <SearchButton onClick={submitHandler} />
     </form>
   );

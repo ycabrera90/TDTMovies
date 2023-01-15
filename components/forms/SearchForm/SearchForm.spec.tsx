@@ -1,6 +1,7 @@
 import SearchForm from './SearchForm';
 import { act, fireEvent, render } from '@testing-library/react';
 import singletonRouter from 'next/router';
+import mockRouter from 'next-router-mock';
 
 jest.mock('next/router', () => require('next-router-mock'));
 const onSubmitFormHandler = jest.fn();
@@ -27,7 +28,7 @@ describe('SearchForm', () => {
     );
 
     act(() => {
-        getByTestId('SearchButton').click();
+      getByTestId('SearchButton').click();
     });
 
     expect(onSubmitFormHandler).toHaveBeenCalledTimes(1);
@@ -57,5 +58,18 @@ describe('SearchForm', () => {
     expect(singletonRouter.pathname).toBe(
       `/home/${encodeURIComponent('some test in the input')}`
     );
+  });
+
+  it('if the form enter in the path /home the search input field has to clear', () => {
+    const { getByTestId } = render(<SearchForm />);
+
+    act(() => {
+      fireEvent.change(getByTestId('SearchInput'), {
+        target: { value: 'some test in the input' },
+      });
+      mockRouter.push('/home');
+    });
+
+    expect((getByTestId('SearchInput') as HTMLInputElement).value).toBe('');
   });
 });
