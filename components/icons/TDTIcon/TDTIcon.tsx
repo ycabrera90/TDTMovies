@@ -11,14 +11,17 @@ export interface ITDTIcon {
 
 const TDTIcon: FC<ITDTIcon> = ({ className, onClick }) => {
   return (
-    <div className={[styles.container, className ? className : ''].join(' ')} >
+    <div
+      className={[styles.container, className ? className : ''].join(' ')}
+      data-testid="TDTIcon"
+    >
       <Image
-          onClick={onClick}
-          alt='TDT Logo'
-          src={tdtLogo}
-          fill                                            
-          style={{ objectFit: "cover" }}
-          sizes="(max-width: 768px)  100vw,                
+        onClick={onClick}
+        alt="TDT Logo"
+        src={tdtLogo}
+        fill
+        style={{ objectFit: 'cover' }}
+        sizes="(max-width: 768px)  100vw,                
                  (max-width: 1200px)  50vw,
                                       33vw"
       />
