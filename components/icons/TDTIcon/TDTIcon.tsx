@@ -18,6 +18,7 @@ const TDTIcon: FC<ITDTIcon> = ({ className, onClick }) => {
       <Image
         onClick={onClick}
         alt="TDT Logo"
+        data-testid="TDTIconImage"
         src={tdtLogo}
         fill
         style={{ objectFit: 'cover' }}
