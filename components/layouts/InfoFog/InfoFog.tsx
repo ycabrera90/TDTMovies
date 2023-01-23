@@ -10,7 +10,10 @@ export interface IInfoFog {
 
 const InfoFog: FC<IInfoFog> = ({ className, title, overview }) => {
   return (
-    <div className={[styles['bottom-fog'], className ? className : ''].join(' ')}>
+    <div 
+      className={[styles['bottom-fog'], className ? className : ''].join(' ')}
+      data-testid="InfoFog"
+    >
       <h1 className={styles.title}>{title}</h1>
       <p className={styles.overview}>{overview}</p>
     </div>
