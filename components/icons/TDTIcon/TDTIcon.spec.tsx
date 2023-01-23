@@ -12,7 +12,7 @@ describe('TDTIcon', () => {
     expect(getByTestId('TDTIcon')).toHaveClass('test');
   });
 
-  it('Cuando haga clic en la imagen se debe ejecutar el accesorio de OnClick', () => {
+  it('when do click on image the onClick prop should be executed', () => {
     const mockOnClick = jest.fn();
     const { getByTestId } = render(<TDTIcon onClick={mockOnClick} />);
     getByTestId('TDTIconImage').click();
