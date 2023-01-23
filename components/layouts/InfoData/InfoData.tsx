@@ -19,7 +19,10 @@ const InfoData: FC<IInfoData> = ({ className, tag, value, unit }) => {
   }
 
   return (
-    <div className={[styles.container, className ? className : ''].join(' ')}>
+    <div
+      className={[styles.container, className ? className : ''].join(' ')}
+      data-testid="InfoData"
+    >
       <label>{`${tag}:`}</label>
       <span>{`${formattedValue} ${unit ? unit : ''}`}</span>
     </div>
