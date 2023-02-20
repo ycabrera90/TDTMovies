@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import { FC, useState } from "react";
+import { useRouter } from "next/router";
 import useDOM from "@/hooks/useDOM";
 import { useAppSelector } from "@/redux/hooks";
 import TDTIcon from "@/components/icons/TDTIcon/TDTIcon";
@@ -39,6 +39,7 @@ const MainHeader: FC<IMainHeader> = ({ className }) => {
       {screen && screen.size.width !== null && (
         <header
           className={[styles.container, className ? className : ''].join(' ')}
+          data-testid="MainHeader"
         >
           <TDTIcon onClick={logoClickHandler} />
 

@@ -12,6 +12,7 @@ const CloseButton: FC<ICloseButton> = ({ className, onClick }) => {
     <CloseOutlined
       className={[styles.icon, className ? className : ''].join(' ')}
       onClick={onClick}
+      data-testid="CloseButton"
     />
   );
 };

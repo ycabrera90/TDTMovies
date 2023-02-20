@@ -6,8 +6,8 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import { Skeleton } from "antd";
 import { authActions } from "@/redux/slices/authSlice";
 import AddRemButton from "@/components/buttons/AddRemButton/AddRemButton";
-import styles from "./MovieCard.module.scss";
 import InfoFog from "@/components/layouts/InfoFog/InfoFog";
+import styles from "./MovieCard.module.scss";
 
 export interface IMovieCard {
   className?: string;
@@ -19,10 +19,10 @@ export interface IMovieCard {
 }
 
 const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, voteAverage }) => {
-  const [validMovie, setValidMovie] = useState<boolean>(false);
-  const [imageLoading, setImageLoading] = useState<boolean>(true);
-  const [isCardRemoved, setIsCardRemoved] = useState<boolean>(false);   // <-- only for add a transition when the card is removed
-  const [cardHeight, setCardHeight ] = useState<number>(307.04);
+  const [validMovie, setValidMovie] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
+  const [isCardRemoved, setIsCardRemoved] = useState(false);   // <-- only for add a transition when the card is removed
+  const [cardHeight, setCardHeight ] = useState(307.04);
   const [addRemBttnType, setAddRemBttnType] = useState<'add'|'remove'>('add');
   const favoriteMovies = useAppSelector(state => state.auth.favoriteMovies)
   const dispatch = useAppDispatch()
@@ -89,6 +89,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
       <div
         className={[styles.container, className ? className : ''].join(' ')}
         style={{ height: cardHeight }}
+        data-testid="MovieCard"
       >
         <article className={styles.card} ref={cardDOM}>
           {imageLoading && (
@@ -106,6 +107,7 @@ const MovieCard: FC<IMovieCard> = ({ className, id, title, overview, imageUrl, v
             onClick={clickImageHandler}
             fill
             priority
+            data-testid="MovieCardImage"
           />
           <AddRemButton
             className={styles['add-rem-button']}

@@ -17,6 +17,7 @@ const ToggleButton: FC<IToggleButton> = ({ className, clicked, onClick }) => {
         clicked ? styles['expanded'] : '',
       ].join(' ')}
       onClick={onClick}
+      data-testid="ToggleButton"
     >
       <span></span>
       <span></span>
