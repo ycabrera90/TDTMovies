@@ -1,7 +1,7 @@
 <p align="center">
-  <a href="https://my-summary-sooty.vercel.app/"
+  <a href="https://tdt-movies.vercel.app/"
     ><img
-      src="https://eip-my-summary.herokuapp.com/images/logo"
+      src="https://tdt-movies.vercel.app/gif/project-landing-page.gif"
       alt="EIP Studios"
      />
   </a>
